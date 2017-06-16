@@ -2374,6 +2374,7 @@
 				F3298D891EF429180008F802 /* Global.swift */,
 				F3298D6D1EF01DD20008F802 /* PCCommandLineLog.swift */,
 				F3298D811EF2E5CE0008F802 /* PCUtility.swift */,
+				F3298D871EF427B50008F802 /* PCDefaultTemplate.swift */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -2381,6 +2382,7 @@
 		F3298D701EF01DE20008F802 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F3298D851EF423A40008F802 /* PCSettings.swift */,
 				OBJ_10 /* PCUrlConfig.swift */,
 				F3298D7F1EF2E3650008F802 /* PCView.swift */,
 			);
@@ -2679,8 +2681,6 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_9 /* Django.swift */,
-				F3298D851EF423A40008F802 /* PCSettings.swift */,
-				F3298D871EF427B50008F802 /* PCDefaultTemplate.swift */,
 				F3298D6F1EF01DDB0008F802 /* Utility */,
 				F3298D701EF01DE20008F802 /* Model */,
 			);

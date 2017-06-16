@@ -15,9 +15,9 @@ public func url(_ url: String, _ handleBlock: @escaping (() -> PCUrl), _ name: S
     return PCUrlConfig(url: url, handle: handle, name: name)
 }
 
-public func url(_ url: String, _ view: PCView, _ name: String? = nil) -> PCUrlConfig {
+public func url(_ url: String, _ view: PCView.Type, _ name: String? = nil) -> PCUrlConfig {
     let handle: RequestHandler = { req, res in
-        res._pjango_safe_setResponse(view.getTemplate())
+        res._pjango_safe_setResponse(view.init().getTemplate())
     }
     return PCUrlConfig(url: url, handle: handle, name: name)
 }

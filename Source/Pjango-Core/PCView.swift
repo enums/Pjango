@@ -15,10 +15,6 @@ open class PCView {
 
     required public init() { }
     
-    class open func asView() -> Self {
-        return self.init()
-    }
-    
     open func getObjects() -> Dictionary<String, Any>? {
         return nil
     }
