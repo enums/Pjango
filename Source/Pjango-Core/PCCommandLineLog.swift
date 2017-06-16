@@ -1,5 +1,5 @@
 //
-//  CommandLineLog.swift
+//  PCCommandLineLog.swift
 //  Pjango
 //
 //  Created by 郑宇琦 on 2017/6/13.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class CommandLineLog {
+public class PCCommandLineLog {
     
     public var tag: String
     
@@ -18,6 +18,12 @@ public class CommandLineLog {
     
     public func info(_ msg: String) {
         print("[\(Date.init().stringValue)][\(tag)][INFO]: \(msg)")
+    }
+    
+    public func debug(_ msg: String) {
+        if PCSettings.shared.debugLog {
+            print("[\(Date.init().stringValue)][\(tag)][DEBUG]: \(msg)")
+        }
     }
     
     public func error(_ msg: String) {

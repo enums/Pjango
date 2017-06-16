@@ -14,10 +14,12 @@ import Pjango_Core
 
 public let WORKSPACE_PATH = "/Users/Enum/Developer/macOS/Pjango/Workspace"
 
+public let DEBUG_LOG = true
+
 // Django
 public let BASE_DIR = ""
 
-public let TEMPLATES_DIR = "templates/"
+public let TEMPLATES_DIR = "templates"
 
 
-public let STATIC_URL = "static/"
+public let STATIC_URL = "static"

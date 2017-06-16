@@ -13,52 +13,52 @@ import Pjango_Demo
 import Pjango_Core
 
 // MARK: - Prepare
-let log = CommandLineLog.init(tag: "Pjango-Runtime")
-log.info("Hello Pjango!")
+let _pjango_runtime_log = PCCommandLineLog.init(tag: "Pjango-Runtime")
+_pjango_runtime_log.info("Hello Pjango!")
 
 // MARK: - CommandLine
 guard CommandLine.argc >= 2 else {
-    log.error("Please input port!")
+    _pjango_runtime_log.error("Please input port!")
     exit(0)
 }
 
 guard let port = UInt16(CommandLine.arguments[1]) else {
-    log.error("Illegal port!")
+    _pjango_runtime_log.error("Illegal port!")
     exit(0)
 }
 
 // MARK: - Init
-log.info("Initializing...")
-settings_build()
+_pjango_runtime_log.info("Initializing...")
+_pjango_runtime_build_settings()
 
 // MARK: - Configuration
-log.info("Configuring...")
-var urls_urlToConfig = Dictionary<String, PCUrlConfig>()
-var urls_nameToConfig = Dictionary<String, PCUrlConfig>()
+_pjango_runtime_log.info("Configuring...")
+var _pjango_runtime_urls_urlToConfig = Dictionary<String, PCUrlConfig>()
+var _pjango_runtime_urls_nameToConfig = Dictionary<String, PCUrlConfig>()
 
 urlpatterns.forEach { config in
-    urls_urlToConfig[config.url] = config
+    _pjango_runtime_urls_urlToConfig[config.url] = config
     if let name = config.name {
-        urls_nameToConfig[name] = config
+        _pjango_runtime_urls_nameToConfig[name] = config
     }
 }
 
 
 var routes = Routes.init()
 
-urls_urlToConfig.forEach { (url, config) in
+_pjango_runtime_urls_urlToConfig.forEach { (url, config) in
     routes.add(uri: url, handler: config.handle)
 }
 
 // MARK: - Server
-log.info("Starting...")
-let server = HTTPServer.init()
-server.documentRoot = static_url
-server.serverPort = port
-server.addRoutes(routes)
+_pjango_runtime_log.info("Starting...")
+let _pjango_runtime_server = HTTPServer.init()
+_pjango_runtime_server.documentRoot = PCSettings.shared.staticUrl
+_pjango_runtime_server.serverPort = port
+_pjango_runtime_server.addRoutes(routes)
 do {
-    try server.start()
+    try _pjango_runtime_server.start()
 } catch {
-    log.error(error)
+    _pjango_runtime_log.error(error)
 }
 

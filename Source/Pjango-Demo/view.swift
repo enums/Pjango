@@ -10,6 +10,20 @@ import Foundation
 import PerfectHTTP
 import Pjango_Core
 
-func sayHelloWorld() -> RequestHandler {
+func sayHelloWorld() -> PCUrl {
     return HttpResponse("Hello Pjango!")
+}
+
+class IndexView: PCView {
+    
+    required init() {
+        super.init()
+        
+        
+        
+        template_name = "index.html"
+        
+        
+    }
+    
 }

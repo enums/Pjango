@@ -7,12 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F3298D6E1EF01DD20008F802 /* CommandLineLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3298D6D1EF01DD20008F802 /* CommandLineLog.swift */; };
+		F3298D6E1EF01DD20008F802 /* PCCommandLineLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3298D6D1EF01DD20008F802 /* PCCommandLineLog.swift */; };
 		F3298D721EF01F430008F802 /* settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3298D711EF01F430008F802 /* settings.swift */; };
 		F3298D761EF023C40008F802 /* settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3298D751EF023C40008F802 /* settings.swift */; };
 		F3298D781EF028D10008F802 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3298D771EF028D10008F802 /* Extension.swift */; };
 		F3298D7A1EF0296F0008F802 /* model.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3298D791EF0296F0008F802 /* model.swift */; };
 		F3298D7C1EF0298E0008F802 /* view.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3298D7B1EF0298E0008F802 /* view.swift */; };
+		F3298D801EF2E3650008F802 /* PCView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3298D7F1EF2E3650008F802 /* PCView.swift */; };
+		F3298D821EF2E5CE0008F802 /* PCUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3298D811EF2E5CE0008F802 /* PCUtility.swift */; };
+		F3298D861EF423A40008F802 /* PCSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3298D851EF423A40008F802 /* PCSettings.swift */; };
+		F3298D881EF427B50008F802 /* PCDefaultTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3298D871EF427B50008F802 /* PCDefaultTemplate.swift */; };
+		F3298D8A1EF429180008F802 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3298D891EF429180008F802 /* Global.swift */; };
 		OBJ_1000 /* d1_srtp.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_254 /* d1_srtp.c */; };
 		OBJ_1001 /* d1_srvr.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_255 /* d1_srvr.c */; };
 		OBJ_1002 /* d2i_pr.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_256 /* d2i_pr.c */; };
@@ -618,7 +623,7 @@
 		OBJ_1691 /* COpenSSL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = OBJ_789 /* COpenSSL.framework */; };
 		OBJ_1692 /* PerfectCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = OBJ_790 /* PerfectCrypto.framework */; };
 		OBJ_1693 /* PerfectNet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = OBJ_791 /* PerfectNet.framework */; };
-		OBJ_1704 /* DjangoPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* DjangoPreference.swift */; };
+		OBJ_1704 /* Django.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Django.swift */; };
 		OBJ_1705 /* PCUrlConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* PCUrlConfig.swift */; };
 		OBJ_1707 /* PerfectLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = OBJ_787 /* PerfectLib.framework */; };
 		OBJ_1708 /* PerfectThread.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = OBJ_788 /* PerfectThread.framework */; };
@@ -1398,12 +1403,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		F3298D6D1EF01DD20008F802 /* CommandLineLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandLineLog.swift; sourceTree = "<group>"; };
+		F3298D6D1EF01DD20008F802 /* PCCommandLineLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PCCommandLineLog.swift; sourceTree = "<group>"; };
 		F3298D711EF01F430008F802 /* settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = settings.swift; sourceTree = "<group>"; };
 		F3298D751EF023C40008F802 /* settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = settings.swift; sourceTree = "<group>"; };
 		F3298D771EF028D10008F802 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		F3298D791EF0296F0008F802 /* model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = model.swift; sourceTree = "<group>"; };
 		F3298D7B1EF0298E0008F802 /* view.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = view.swift; sourceTree = "<group>"; };
+		F3298D7F1EF2E3650008F802 /* PCView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PCView.swift; sourceTree = "<group>"; };
+		F3298D811EF2E5CE0008F802 /* PCUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PCUtility.swift; sourceTree = "<group>"; };
+		F3298D851EF423A40008F802 /* PCSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PCSettings.swift; sourceTree = "<group>"; };
+		F3298D871EF427B50008F802 /* PCDefaultTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PCDefaultTemplate.swift; sourceTree = "<group>"; };
+		F3298D891EF429180008F802 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		OBJ_10 /* PCUrlConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCUrlConfig.swift; sourceTree = "<group>"; };
 		OBJ_100 /* a_set.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = a_set.c; sourceTree = "<group>"; };
 		OBJ_101 /* a_sign.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = a_sign.c; sourceTree = "<group>"; };
@@ -2163,7 +2173,7 @@
 		OBJ_87 /* a_bool.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = a_bool.c; sourceTree = "<group>"; };
 		OBJ_88 /* a_bytes.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = a_bytes.c; sourceTree = "<group>"; };
 		OBJ_89 /* a_d2i_fp.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = a_d2i_fp.c; sourceTree = "<group>"; };
-		OBJ_9 /* DjangoPreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DjangoPreference.swift; sourceTree = "<group>"; };
+		OBJ_9 /* Django.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Django.swift; sourceTree = "<group>"; };
 		OBJ_90 /* a_digest.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = a_digest.c; sourceTree = "<group>"; };
 		OBJ_91 /* a_dup.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = a_dup.c; sourceTree = "<group>"; };
 		OBJ_92 /* a_enum.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = a_enum.c; sourceTree = "<group>"; };
@@ -2357,19 +2367,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		F3298D6F1EF01DDB0008F802 /* Utils */ = {
+		F3298D6F1EF01DDB0008F802 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
 				F3298D771EF028D10008F802 /* Extension.swift */,
-				F3298D6D1EF01DD20008F802 /* CommandLineLog.swift */,
+				F3298D891EF429180008F802 /* Global.swift */,
+				F3298D6D1EF01DD20008F802 /* PCCommandLineLog.swift */,
+				F3298D811EF2E5CE0008F802 /* PCUtility.swift */,
 			);
-			name = Utils;
+			name = Utility;
 			sourceTree = "<group>";
 		};
 		F3298D701EF01DE20008F802 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				OBJ_10 /* PCUrlConfig.swift */,
+				F3298D7F1EF2E3650008F802 /* PCView.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -2665,8 +2678,10 @@
 		OBJ_8 /* Pjango-Core */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_9 /* DjangoPreference.swift */,
-				F3298D6F1EF01DDB0008F802 /* Utils */,
+				OBJ_9 /* Django.swift */,
+				F3298D851EF423A40008F802 /* PCSettings.swift */,
+				F3298D871EF427B50008F802 /* PCDefaultTemplate.swift */,
+				F3298D6F1EF01DDB0008F802 /* Utility */,
 				F3298D701EF01DE20008F802 /* Model */,
 			);
 			name = "Pjango-Core";
@@ -3858,9 +3873,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_1704 /* DjangoPreference.swift in Sources */,
-				F3298D6E1EF01DD20008F802 /* CommandLineLog.swift in Sources */,
+				OBJ_1704 /* Django.swift in Sources */,
+				F3298D801EF2E3650008F802 /* PCView.swift in Sources */,
+				F3298D6E1EF01DD20008F802 /* PCCommandLineLog.swift in Sources */,
+				F3298D821EF2E5CE0008F802 /* PCUtility.swift in Sources */,
+				F3298D881EF427B50008F802 /* PCDefaultTemplate.swift in Sources */,
 				OBJ_1705 /* PCUrlConfig.swift in Sources */,
+				F3298D861EF423A40008F802 /* PCSettings.swift in Sources */,
+				F3298D8A1EF429180008F802 /* Global.swift in Sources */,
 				F3298D781EF028D10008F802 /* Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

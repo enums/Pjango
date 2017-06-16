@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import PerfectHTTP
 
 fileprivate var dateFormatter = { () -> DateFormatter in
     let that = DateFormatter.init()
@@ -20,5 +21,13 @@ public extension Date {
         get {
             return dateFormatter.string(from: self)
         }
+    }
+}
+
+public extension HTTPResponse {
+    func _pjango_safe_setResponse(_ body: String?) {
+        self.setHeader(.contentType, value: "text/html")
+        self.setBody(string: body ?? "Error")
+        self.completed()
     }
 }

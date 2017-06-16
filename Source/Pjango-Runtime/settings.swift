@@ -8,19 +8,14 @@
 
 import Foundation
 import PerfectLib
+import Pjango_Core
 import Pjango_Demo
 
-func settings_build() {
-    workspace_path = WORKSPACE_PATH
-    base_dir = "\(workspace_path)/\(BASE_DIR)"
-    templates_dir = "\(workspace_path)/\(TEMPLATES_DIR)"
-    
-    static_url = "\(workspace_path)\(STATIC_URL)"
+internal func _pjango_runtime_build_settings() {
+    PCSettings.shared.workspacePath = WORKSPACE_PATH
+    PCSettings.shared.baseDir = "\(WORKSPACE_PATH)/\(BASE_DIR)"
+    PCSettings.shared.templatesDir = "\(WORKSPACE_PATH)/\(TEMPLATES_DIR)"
+    PCSettings.shared.staticUrl = "\(WORKSPACE_PATH)/\(STATIC_URL)"
+
 }
 
-var workspace_path: String! = nil
-
-var base_dir: String! = nil
-var templates_dir: String! = nil
-
-var static_url: String! = nil

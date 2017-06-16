@@ -9,6 +9,7 @@ import Foundation
 import Pjango_Core
 
 public let urlpatterns: Array<PCUrlConfig> = [
-    url("", sayHelloWorld(), "index"),
+    url("hello", sayHelloWorld, "hello"),
+    url("", IndexView.asView(), "index")
 ]
 

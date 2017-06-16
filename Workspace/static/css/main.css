@@ -1,0 +1,134 @@
+@-webkit-keyframes fadeInLeft {
+	0% {
+		left: -5%;
+		opacity: 0; /*初始状态 透明度为0*/
+	}
+	100% {
+		left: 0%;
+		opacity: 1; /*结尾状态 透明度为1*/
+	}
+}
+@-webkit-keyframes fadeOutLeft {
+	0% {
+		left: 0%;
+		opacity: 1; /*初始状态 透明度为0*/
+	}
+	100% {
+		left: 5%;
+		opacity: 0; /*结尾状态 透明度为1*/
+	}
+}
+@-webkit-keyframes fadeInTop {
+	0% {
+		top: -24px;
+		opacity: 0; /*初始状态 透明度为0*/
+	}
+	100% {
+		top: 0px;
+		opacity: 1; /*结尾状态 透明度为1*/
+	}
+}
+@-webkit-keyframes fadeInBottom {
+	0% {
+		top: 12px;
+		opacity: 0; /*初始状态 透明度为0*/
+	}
+	100% {
+		top: 0px;
+		opacity: 1; /*结尾状态 透明度为1*/
+	}
+}
+
+body {
+	background-color: #d3d7d4;
+}
+a:hover {
+	text-decoration: none;
+}
+a.logo {
+	font-size: 22px;
+}
+div.herfstyle {
+	cursor:hand;
+}
+button.font {
+	font-size: 22px;
+}
+button.navi {
+	margin-right: 8px;
+	font-size: 19px;
+}
+div.post {
+	border-radius: 4px;
+	transition:background-color 0.3s linear;
+	-webkit-animation-fill-mode: forwards;
+	-webkit-animation-name: fadeInTop;
+	-webkit-animation-duration: 0.6s;
+}
+.index {
+	-webkit-animation-fill-mode: forwards;
+	-webkit-animation-name: fadeInTop;
+	-webkit-animation-duration: 0.8s;
+}
+.index_btm {
+	-webkit-animation-fill-mode: forwards;
+	-webkit-animation-name: fadeInBottom;
+	-webkit-animation-duration: 0.8s;
+}
+div.cell {
+	cursor: hand;
+	border-radius: 4px;
+	box-shadow: 4px 4px 6px #11264f;
+	background-color: rgba(255, 255, 255, 0.2);
+	transition:background-color 0.3s linear;
+	opacity: 0;
+	-webkit-animation-fill-mode: forwards;
+	-webkit-animation-name: fadeInLeft;
+	-webkit-animation-duration: 0.6s;
+}
+div.cell:hover{
+	background-color: rgba(255, 255, 255, 0.4);
+}
+div.cell_out {
+	cursor: hand;
+	border-radius: 4px;
+	box-shadow: 4px 4px 6px #11264f;
+	background-color: rgba(255, 255, 255, 0.2);
+	transition:background-color 0.3s linear;
+	-webkit-animation-fill-mode: forwards;
+	-webkit-animation-name: fadeOutLeft;
+	-webkit-animation-duration: 0.6s;
+}
+div.cell_foot {
+	width: 132px;
+}
+div.code {
+	width: 48%
+}
+i.cell_foot {
+	font-size: 18px;
+}
+i.cell_foot_btn {
+	font-size: 11px;
+}
+a.tag {
+	font-size: 15px;
+	margin-right: 8px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	word-wrap: break-word;
+	line-height: 1.5;
+}
+hr {
+	background-color: #d3d7d4;
+	height:1px;
+}
+i.date {
+	color: #464547;
+	font-size: 16;
+}
