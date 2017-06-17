@@ -10,15 +10,7 @@ import Foundation
 
 public typealias PCMetaModel = PCModel
 
-open class PCModel: PCViewable {
-    
-    open var _pjango_core_class_name: String {
-        return String(describing: Mirror.init(reflecting: self).subjectType)
-    }
-    
-    open static var _pjango_core_class_name: String {
-        return String(describing: Mirror.init(reflecting: self).subjectType).components(separatedBy: ".")[0]
-    }
+open class PCModel: PCObject, PCViewable {
     
     open var _pjango_core_fields = Array<PCDataBaseField>()
 
@@ -48,7 +40,8 @@ open class PCModel: PCViewable {
         }
     }
     
-    required public init() {
+    required public override init() {
+        super.init()
         let mirror = Mirror(reflecting: self)
         mirror.children.forEach { _, value in
             if let field = value as? PCDataBaseField {

@@ -12,7 +12,11 @@ import Pjango_Core
 public func _pjango_user_setSettings() {
     
     // Pjango
-    WORKSPACE_PATH = "/Users/Enum/Developer/macOS/Pjango/Workspace"
+    #if os(macOS)
+        WORKSPACE_PATH = "/Users/Enum/Developer/macOS/Pjango/Workspace"
+    #else
+        WORKSPACE_PATH = "/media/psf/Home/Developer/macOS/Pjango/Workspace"
+    #endif
 
     DEBUG_LOG = true
 

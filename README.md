@@ -10,3 +10,5 @@
 </p>
 
 A Swift server-side framework working like Django. Using MVC to design your website.
+
+Need OpenSSL 1.0.2.

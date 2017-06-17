@@ -32,7 +32,7 @@ open class PCMySQLDataBase: PCDataBase {
     }
     
     override open func doQuery(_ sql: PCSqlStatement) -> [PCDataBaseRecord]? {
-        guard mysql.selectDatabase(named: config.name), mysql.query(statement: sql) else {
+        guard mysql.query(statement: sql) else {
             return nil
         }
         guard let results = mysql.storeResults() else {

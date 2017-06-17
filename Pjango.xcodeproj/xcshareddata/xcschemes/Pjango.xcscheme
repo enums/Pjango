@@ -14,20 +14,6 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_824"
-               BuildableName = "SwiftyJSON.framework"
-               BlueprintName = "SwiftyJSON"
-               ReferencedContainer = "container:Pjango.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "OBJ_831"
                BuildableName = "PerfectLib.framework"
                BlueprintName = "PerfectLib"
@@ -210,7 +196,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_1780"
+               BlueprintIdentifier = "OBJ_1785"
                BuildableName = "Pjango_Demo.framework"
                BlueprintName = "Pjango-Demo"
                ReferencedContainer = "container:Pjango.xcodeproj">
@@ -224,7 +210,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_1818"
+               BlueprintIdentifier = "OBJ_1821"
                BuildableName = "Pjango-Runtime"
                BlueprintName = "Pjango-Runtime"
                ReferencedContainer = "container:Pjango.xcodeproj">
@@ -255,9 +241,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "OBJ_824"
-            BuildableName = "SwiftyJSON.framework"
-            BlueprintName = "SwiftyJSON"
+            BlueprintIdentifier = "OBJ_831"
+            BuildableName = "PerfectLib.framework"
+            BlueprintName = "PerfectLib"
             ReferencedContainer = "container:Pjango.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

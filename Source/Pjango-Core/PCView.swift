@@ -16,12 +16,8 @@ public protocol PCViewable {
     func toViewParam() -> PCViewParam
     
 }
-open class PCView {
+open class PCView: PCObject {
     
-    open var _pjango_core_class_name: String {
-        return String(describing: Mirror.init(reflecting: self).subjectType)
-    }
-
     open var _pjango_core_template_path: String {
         return "\(TEMPLATES_DIR)/\(templateName)"
     }
@@ -38,7 +34,7 @@ open class PCView {
         return nil
     }
     
-    required public init() { }
+    required public override init() { }
         
     open func getTemplate() -> String {
         do {
