@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		F3298DE21EF4DA850008F802 /* settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3298DE11EF4DA850008F802 /* settings.swift */; };
-		F3298DE41EF4DA990008F802 /* view.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3298DE31EF4DA990008F802 /* view.swift */; };
+		F3298DE81EF500540008F802 /* PCDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3298DE71EF500540008F802 /* PCDetailView.swift */; };
+		F3298DEA1EF5006A0008F802 /* PCListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3298DE91EF5006A0008F802 /* PCListView.swift */; };
 		OBJ_1000 /* cms_pwri.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_244 /* cms_pwri.c */; };
 		OBJ_1001 /* cms_sd.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_245 /* cms_sd.c */; };
 		OBJ_1002 /* cms_smime.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_246 /* cms_smime.c */; };
@@ -1430,7 +1431,8 @@
 
 /* Begin PBXFileReference section */
 		F3298DE11EF4DA850008F802 /* settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = settings.swift; sourceTree = "<group>"; };
-		F3298DE31EF4DA990008F802 /* view.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = view.swift; sourceTree = "<group>"; };
+		F3298DE71EF500540008F802 /* PCDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PCDetailView.swift; sourceTree = "<group>"; };
+		F3298DE91EF5006A0008F802 /* PCListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PCListView.swift; sourceTree = "<group>"; };
 		OBJ_10 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		OBJ_100 /* a_d2i_fp.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = a_d2i_fp.c; sourceTree = "<group>"; };
 		OBJ_101 /* a_digest.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = a_digest.c; sourceTree = "<group>"; };
@@ -2422,6 +2424,8 @@
 			children = (
 				OBJ_14 /* PCUrlConfig.swift */,
 				OBJ_16 /* PCView.swift */,
+				F3298DE71EF500540008F802 /* PCDetailView.swift */,
+				F3298DE91EF5006A0008F802 /* PCListView.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -2718,7 +2722,6 @@
 				OBJ_10 /* Extension.swift */,
 				OBJ_11 /* CoreGlobal.swift */,
 				F3298DE11EF4DA850008F802 /* settings.swift */,
-				F3298DE31EF4DA990008F802 /* view.swift */,
 				F3298DDF1EF4CC6D0008F802 /* Utility */,
 				F3298DE01EF4CC760008F802 /* Model */,
 			);
@@ -3948,10 +3951,11 @@
 			files = (
 				OBJ_1725 /* Pjango.swift in Sources */,
 				OBJ_1726 /* Extension.swift in Sources */,
+				F3298DEA1EF5006A0008F802 /* PCListView.swift in Sources */,
+				F3298DE81EF500540008F802 /* PCDetailView.swift in Sources */,
 				OBJ_1727 /* CoreGlobal.swift in Sources */,
 				OBJ_1728 /* PCCommandLineLog.swift in Sources */,
 				OBJ_1729 /* PCDefaultTemplate.swift in Sources */,
-				F3298DE41EF4DA990008F802 /* view.swift in Sources */,
 				F3298DE21EF4DA850008F802 /* settings.swift in Sources */,
 				OBJ_1730 /* PCUrlConfig.swift in Sources */,
 				OBJ_1731 /* PCUtility.swift in Sources */,

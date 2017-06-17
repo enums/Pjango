@@ -11,58 +11,65 @@ import PerfectHTTP
 import Pjango_Core
 
 class TemplateHead: PCView {
-    required init() {
-        super.init()
-        templateName = "template_head.html"
+    
+    override var templateName: String {
+        return "template_head.html"
     }
+    
 }
 
 class TemplateFoot: PCView {
-    required init() {
-        super.init()
-        templateName = "template_foot.html"
+    
+    override var templateName: String {
+        return "template_foot.html"
     }
+
 }
 
 class IndexView: PCView {
+    
+    override var templateName: String {
+        return "index.html"
+    }
     
     override var objects: PCViewParam? {
         return [
             "_pjango_templage_head": TemplateHead.init().getTemplate(),
             "_pjango_templage_foot": TemplateFoot.init().getTemplate(),
-            "_pjango_url_list": reverse(""),
+            "_pjango_url_timezone": reverse("time_zone"),
             "_pjango_param_time": Date.init().stringValue,
             "_pjango_param_msg": "Msg from Pjango"
         ]
     }
     
-    required init() {
-        super.init()
-        
-        templateName = "index.html"
-        
-    }
     
 }
 
-class TimeZoneView: PCView {
+class TimeZoneView: PCListView {
     
-    override var objects: PCViewParam? {
+    override var templateName: String {
+        return "time_zone.html"
+    }
+    
+    override var querySetContextName: String {
+        return "_pjango_param_timezone"
+    }
+    
+    override var querySet: Array<PCViewable> {
         let date = Date.init()
-        let dates = [
+        return [
             TimeZoneDate.init(date: date, zone: "GMT"),
             TimeZoneDate.init(date: date, zone: "UTC"),
             TimeZoneDate.init(date: date, zone: "CST"),
         ]
+    }
+    
+    override var objects: PCViewParam? {
         return [
             "_pjango_templage_head": TemplateHead.init().getTemplate(),
             "_pjango_templage_foot": TemplateFoot.init().getTemplate(),
-            "_pjango_param_loop_timezone": dates.map { $0.toViewParam() }
+            "_pjango_url_timezone": reverse("time_zone"),
         ]
     }
 
-    required init() {
-        super.init()
-        templateName = "time_zone.html"
-    }
 }
