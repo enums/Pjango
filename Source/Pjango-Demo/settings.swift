@@ -9,8 +9,7 @@
 import Foundation
 import Pjango_Core
 
-
-public func _pjango_user_settings() {
+public func _pjango_user_setSettings() {
     
     // Pjango
     WORKSPACE_PATH = "/Users/Enum/Developer/macOS/Pjango/Workspace"
@@ -22,6 +21,14 @@ public func _pjango_user_settings() {
 
     TEMPLATES_DIR = "templates"
 
-
     STATIC_URL = "static"
+    
+    DATABASE = PCDataBaseConfig.init(param: [
+        "ENGINE": PCDataBaseEnginType.mysql,
+        "NAME": "Pjango_default",
+        "USER": "github",
+        "PASSWORD": "enumsgithub.",
+        "HOST": "127.0.0.1",
+        "PORT": UInt16(3306),
+    ])!
 }

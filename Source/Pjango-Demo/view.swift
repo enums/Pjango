@@ -56,19 +56,13 @@ class TimeZoneView: PCListView {
     }
     
     override var querySet: Array<PCViewable> {
-        let date = Date.init()
-        return [
-            TimeZoneDate.init(date: date, zone: "GMT"),
-            TimeZoneDate.init(date: date, zone: "UTC"),
-            TimeZoneDate.init(date: date, zone: "CST"),
-        ]
+        return TimeZoneModel.queryObjects() ?? []
     }
     
     override var objects: PCViewParam? {
         return [
             "_pjango_templage_head": TemplateHead.init().getTemplate(),
             "_pjango_templage_foot": TemplateFoot.init().getTemplate(),
-            "_pjango_url_timezone": reverse("time_zone"),
         ]
     }
 

@@ -23,7 +23,7 @@ public func url(_ url: String, _ view: PCView.Type, _ name: String? = nil) -> PC
 }
 
 public func reverse(_ name: String) -> String {
-    return _pjango_core_urls_nameToConfig[name]?.url ?? ""
+    return _pjango_core_runtime_urls_name2config[name]?.url ?? ""
 }
 
 public func HttpResponse(_ msg: String) -> PCUrl {

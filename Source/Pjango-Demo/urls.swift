@@ -8,8 +8,12 @@
 import Foundation
 import Pjango_Core
 
-public let urlpatterns: Array<PCUrlConfig> = [
-    url("", IndexView.self, "index"),
-    url("time_zone", TimeZoneView.self, "time_zone"),
-]
+public func _pjango_user_setUrls() {
+    
+    urlpatterns = [
+        url("", IndexView.self, "index"),
+        url("time_zone", TimeZoneView.self, "time_zone"),
+    ]
+    
+}
 

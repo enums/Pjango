@@ -9,24 +9,20 @@
 import Foundation
 import Pjango_Core
 
-struct TimeZoneDate: PCViewable {
+public func _pjango_user_registerModels() -> Array<PCMetaModel> {
+    return [
+        TimeZoneModel.init()
+    ]
+}
+
+
+public class TimeZoneModel: PCModel {
     
-    var zone: String
-    var date: String
-    
-    init(date: Date, zone: String) {
-        self.zone = zone
-        let timeZone = TimeZone.init(identifier: zone)
-        let formatter = DateFormatter.init()
-        formatter.timeZone = timeZone
-        formatter.dateFormat = "YYYY-MM-dd HH:mm:ss"
-        self.date = formatter.string(from: date)
+    public override var tableName: String {
+        return "TimeZone"
     }
     
-    func toViewParam() -> PCViewParam {
-        return [
-            "_pjango_param_zone": zone,
-            "_pjango_param_date": date,
-        ]
-    }
+    public var zone = PCDataBaseField.init(name: "ZONE", type: .string, length: 3) { didSet { zone.model = self } }
+    public var memo = PCDataBaseField.init(name: "MEMO", type: .string, length: 50) { didSet { memo.model = self } }
+    
 }

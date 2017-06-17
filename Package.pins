@@ -8,6 +8,12 @@
       "version": "2.0.4"
     },
     {
+      "package": "MySQL",
+      "reason": null,
+      "repositoryURL": "https://github.com/PerfectlySoft/Perfect-MySQL.git",
+      "version": "2.1.2"
+    },
+    {
       "package": "PerfectCURL",
       "reason": null,
       "repositoryURL": "https://github.com/PerfectlySoft/Perfect-CURL.git",
@@ -66,6 +72,12 @@
       "reason": null,
       "repositoryURL": "https://github.com/PerfectlySoft/Perfect-libcurl.git",
       "version": "2.0.4"
+    },
+    {
+      "package": "mysqlclient",
+      "reason": null,
+      "repositoryURL": "https://github.com/PerfectlySoft/Perfect-mysqlclient.git",
+      "version": "2.0.0"
     }
   ],
   "version": 1

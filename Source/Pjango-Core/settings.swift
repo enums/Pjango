@@ -1,5 +1,5 @@
 //
-//  settings.swift
+//  Settings.swift
 //  Pjango
 //
 //  Created by 郑宇琦 on 2017/6/17.
@@ -19,5 +19,6 @@ public var BASE_DIR = ""
 
 public var TEMPLATES_DIR = "templates"
 
-
 public var STATIC_URL = "static"
+
+public var DATABASE = PCDataBaseConfig.init()
