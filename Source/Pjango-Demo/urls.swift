@@ -9,7 +9,7 @@ import Foundation
 import Pjango_Core
 
 public let urlpatterns: Array<PCUrlConfig> = [
-    url("hello", sayHelloWorld, "hello"),
-    url("", IndexView.self, "index")
+    url("", IndexView.self, "index"),
+    url("time_zone", TimeZoneView.self, "time_zone"),
 ]
 

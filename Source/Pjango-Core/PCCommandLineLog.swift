@@ -21,7 +21,7 @@ public class PCCommandLineLog {
     }
     
     public func debug(_ msg: String) {
-        if PCSettings.shared.debugLog {
+        if DEBUG_LOG {
             print("[\(Date.init().stringValue)][\(tag)][DEBUG]: \(msg)")
         }
     }

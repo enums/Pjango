@@ -10,16 +10,18 @@ import Foundation
 import Pjango_Core
 
 
-// Pjango
+public func _pjango_user_settings() {
+    
+    // Pjango
+    WORKSPACE_PATH = "/Users/Enum/Developer/macOS/Pjango/Workspace"
 
-public let WORKSPACE_PATH = "/Users/Enum/Developer/macOS/Pjango/Workspace"
+    DEBUG_LOG = true
 
-public let DEBUG_LOG = true
+    // Django
+    BASE_DIR = ""
 
-// Django
-public let BASE_DIR = ""
-
-public let TEMPLATES_DIR = "templates"
+    TEMPLATES_DIR = "templates"
 
 
-public let STATIC_URL = "static"
+    STATIC_URL = "static"
+}

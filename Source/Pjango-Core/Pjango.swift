@@ -1,5 +1,5 @@
 //
-//  Django.swift
+//  Pjango.swift
 //  Pjango-Core
 //
 //  Created by 郑宇琦 on 2017/6/13.
@@ -20,6 +20,10 @@ public func url(_ url: String, _ view: PCView.Type, _ name: String? = nil) -> PC
         res._pjango_safe_setResponse(view.init().getTemplate())
     }
     return PCUrlConfig(url: url, handle: handle, name: name)
+}
+
+public func reverse(_ name: String) -> String {
+    return _pjango_core_urls_nameToConfig[name]?.url ?? ""
 }
 
 public func HttpResponse(_ msg: String) -> PCUrl {

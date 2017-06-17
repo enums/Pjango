@@ -29,31 +29,30 @@ guard let port = UInt16(CommandLine.arguments[1]) else {
 
 // MARK: - Init
 _pjango_runtime_log.info("Initializing...")
-_pjango_runtime_build_settings()
+_pjango_user_settings()
+_pjango_runtime_settings()
 
 // MARK: - Configuration
 _pjango_runtime_log.info("Configuring...")
-var _pjango_runtime_urls_urlToConfig = Dictionary<String, PCUrlConfig>()
-var _pjango_runtime_urls_nameToConfig = Dictionary<String, PCUrlConfig>()
 
 urlpatterns.forEach { config in
-    _pjango_runtime_urls_urlToConfig[config.url] = config
+    _pjango_core_urls_urlToConfig[config.url] = config
     if let name = config.name {
-        _pjango_runtime_urls_nameToConfig[name] = config
+        _pjango_core_urls_nameToConfig[name] = config
     }
 }
 
 
 var routes = Routes.init()
 
-_pjango_runtime_urls_urlToConfig.forEach { (url, config) in
+_pjango_core_urls_urlToConfig.forEach { (url, config) in
     routes.add(uri: url, handler: config.handle)
 }
 
 // MARK: - Server
 _pjango_runtime_log.info("Starting...")
 let _pjango_runtime_server = HTTPServer.init()
-_pjango_runtime_server.documentRoot = PCSettings.shared.staticUrl
+_pjango_runtime_server.documentRoot = STATIC_URL
 _pjango_runtime_server.serverPort = port
 _pjango_runtime_server.addRoutes(routes)
 do {

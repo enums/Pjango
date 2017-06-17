@@ -7,22 +7,24 @@
 //
 
 import Foundation
+import PerfectMustache
+
+public typealias PCViewParam = Dictionary<String, Any>
 
 open class PCView {
     
-    open var template_name = ""
-    open var context_object_name = ""
+    open var templateName = ""
+    open var contextObjectName = ""
+    open var objects: PCViewParam? {
+        return nil
+    }
 
     required public init() { }
     
-    open func getObjects() -> Dictionary<String, Any>? {
-        return nil
-    }
-    
     open func getTemplate() -> String {
         do {
-            let path = "\(PCSettings.shared.templatesDir)/\(template_name)"
-            let obj = getObjects() ?? Dictionary<String, Any>()
+            let path = "\(TEMPLATES_DIR)/\(templateName)"
+            let obj = objects ?? PCViewParam()
             _pjango_core_log.debug("_pjango_core_getTemplate\nPath: \(path)\nParam: \(obj)\n")
             return try PCUtility.getMustacheTemplate(path: path, param: obj)
         } catch {
