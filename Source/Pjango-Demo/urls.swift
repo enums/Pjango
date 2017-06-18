@@ -10,7 +10,7 @@ import Pjango_Core
 
 public func _pjango_user_setUrls() {
     
-    urlpatterns = [
+    urlPatterns = [
         url("", IndexView.self, "index"),
         url("time_zone", TimeZoneView.self, "time_zone"),
     ]

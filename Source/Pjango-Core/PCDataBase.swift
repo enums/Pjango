@@ -89,7 +89,7 @@ open class PCDataBase {
     }
     
     open func createTable(_ model: PCModel) {
-        query(PCSqlUtility.createTable(config.name, model.tableName, model._pjango_core_fields))
+        query(PCSqlUtility.createTable(config.name, model.tableName, model._pjango_core_model_fields))
     }
     
     open func dropTable(_ model: PCMetaModel) {

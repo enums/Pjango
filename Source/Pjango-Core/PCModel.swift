@@ -12,11 +12,11 @@ public typealias PCMetaModel = PCModel
 
 open class PCModel: PCObject, PCViewable {
     
-    open var _pjango_core_fields = Array<PCDataBaseField>()
+    internal var _pjango_core_model_fields = Array<PCDataBaseField>()
 
-    open var _pjango_core_fields_key = Array<String>()
+    internal var _pjango_core_model_fields_key = Array<String>()
     
-    open var _pjango_core_fields_value = Dictionary<String, PCModelDataBaseFieldType>()
+    internal var _pjango_core_model_fields_value = Dictionary<String, PCModelDataBaseFieldType>()
     
     open var tableName: String {
         return ""
@@ -34,7 +34,7 @@ open class PCModel: PCObject, PCViewable {
             record.removeFirst()
             let model = self.init()
             for i in 0..<record.count {
-                model._pjango_core_fields_value[model._pjango_core_fields_key[i]] = record[i]
+                model._pjango_core_model_fields_value[model._pjango_core_model_fields_key[i]] = record[i]
             }
             return model
         }
@@ -45,14 +45,14 @@ open class PCModel: PCObject, PCViewable {
         let mirror = Mirror(reflecting: self)
         mirror.children.forEach { _, value in
             if let field = value as? PCDataBaseField {
-                _pjango_core_fields.append(field)
-                _pjango_core_fields_key.append(field.name)
+                _pjango_core_model_fields.append(field)
+                _pjango_core_model_fields_key.append(field.name)
             }
         }
     }
     
     public func toViewParam() -> PCViewParam {
-        return _pjango_core_fields_value
+        return _pjango_core_model_fields_value
     }
 
     

@@ -10,10 +10,13 @@ import Foundation
 
 open class PCListView: PCView {
     
-    override open var _pjango_core_param: PCViewParam {
-        var param = super._pjango_core_param
+    override internal var _pjango_core_view_param: PCViewParam {
+        var param = super._pjango_core_view_param
+        guard let objs = querySet else {
+            return param
+        }
         if querySetContextName != "" {
-            param[querySetContextName] = querySet.map { $0.toViewParam() }
+            param[querySetContextName] = objs.map { $0.toViewParam() }
         }
         return param
     }
@@ -22,7 +25,7 @@ open class PCListView: PCView {
         return ""
     }
     
-    open var querySet: Array<PCViewable> {
-        return []
+    open var querySet: Array<PCViewable>? {
+        return nil
     }
 }

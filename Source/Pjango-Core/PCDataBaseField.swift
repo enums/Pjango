@@ -24,10 +24,10 @@ final public class PCDataBaseField {
     
     public var value: PCModelDataBaseFieldType? {
         get {
-            return model?._pjango_core_fields_value[name]
+            return model?._pjango_core_model_fields_value[name]
         }
         set {
-            model?._pjango_core_fields_value[name] = newValue
+            model?._pjango_core_model_fields_value[name] = newValue
         }
     }
     

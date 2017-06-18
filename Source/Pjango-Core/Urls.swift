@@ -8,4 +8,4 @@
 
 import Foundation
 
-public var urlpatterns: Array<PCUrlConfig> = []
+public var urlPatterns: Array<PCUrlConfig> = []

@@ -18,11 +18,11 @@ public protocol PCViewable {
 }
 open class PCView: PCObject {
     
-    open var _pjango_core_template_path: String {
+    internal var _pjango_core_view_template_path: String {
         return "\(TEMPLATES_DIR)/\(templateName)"
     }
     
-    open var _pjango_core_param: PCViewParam {
+    internal var _pjango_core_view_param: PCViewParam {
         return objects ?? PCViewParam()
     }
         
@@ -38,8 +38,8 @@ open class PCView: PCObject {
         
     open func getTemplate() -> String {
         do {
-            _pjango_core_log.debug("Render [\(_pjango_core_class_name)]:\nPath: \(_pjango_core_template_path)\nParam: \(_pjango_core_param)\n")
-            return try PCMustacheUtility.getTemplate(path: _pjango_core_template_path, param: _pjango_core_param)
+            _pjango_core_log.debug("Render [\(_pjango_core_class_name)]:\nPath: \(_pjango_core_view_template_path)\nParam: \(_pjango_core_view_param)\n")
+            return try PCMustacheUtility.getTemplate(path: _pjango_core_view_template_path, param: _pjango_core_view_param)
         } catch {
             _pjango_core_log.error(error)
             return PCDefaultTemplate.template404

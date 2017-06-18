@@ -8,9 +8,9 @@
 import Foundation
 import PerfectHTTP
 
-public typealias PCUrl = RequestHandler
+public typealias PCUrlHandle = RequestHandler
 
-public func url(_ url: String, _ handleBlock: @escaping (() -> PCUrl), _ name: String? = nil) -> PCUrlConfig {
+public func url(_ url: String, _ handleBlock: @escaping (() -> PCUrlHandle), _ name: String? = nil) -> PCUrlConfig {
     let handle = handleBlock()
     return PCUrlConfig(url: url, handle: handle, name: name)
 }
@@ -26,12 +26,12 @@ public func reverse(_ name: String) -> String {
     return _pjango_core_runtime_urls_name2config[name]?.url ?? ""
 }
 
-public func HttpResponse(_ msg: String) -> PCUrl {
+public func HttpResponse(_ msg: String) -> PCUrlHandle {
     return HttpResponse { req, res in
         res._pjango_safe_setResponse(msg)
     }
 }
 
-public func HttpResponse(_ handle: @escaping RequestHandler) -> PCUrl {
+public func HttpResponse(_ handle: @escaping RequestHandler) -> PCUrlHandle {
     return handle
 }

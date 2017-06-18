@@ -55,8 +55,8 @@ class TimeZoneView: PCListView {
         return "_pjango_param_timezone"
     }
     
-    override var querySet: Array<PCViewable> {
-        return TimeZoneModel.queryObjects() ?? []
+    override var querySet: Array<PCViewable>? {
+        return TimeZoneModel.queryObjects()
     }
     
     override var objects: PCViewParam? {
