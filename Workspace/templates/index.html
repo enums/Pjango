@@ -1,26 +1,21 @@
+<!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-{{{_pjango_templage_head}}}
-	<title>Pjango Index</title>
-	<style type="text/css">
-	</style>
+	<meta charset="utf-8"> 
+	<title>Welcome to Pjango</title>
+	<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">  
+	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="col-md-12 column blue_1_2 box">
-	<div class="col-md-10 col_center column">
-		<div class="col-md-12 column gap_90">
-			<div class="col-md-12 column gap_30"></div>
-			<h1 class="text-center white">Welcome to Pjango!</h1>
-			<div class="col-md-12 column">
-				<h4 class="text-center white">Time: {{_pjango_param_time}}</h4>
-				<h4 class="text-center"><a href="{{_pjango_url_timezone}}">See More Time Zone</a></h4>
-				<h4 class="text-center white">{{_pjango_param_msg}}</h4>
-			</div>
-		</div>
-		<div class="col-md-12 column gap_5"></div>
-{{{_pjango_templage_foot}}}
-	</div>
+<h1 class="text-center">Welcome to Pjango!</h1>
+<h4 class="text-center">{{_pjango_param_msg}}</h4>
+<h4 class="text-center">{{_pjango_param_time}}</h4>
+
+<div class="text-center">
+	<button type="button" class="btn btn-default" onclick="window.open('{{_pjango_url_timezone}}')">See More Time Zone</button>
 </div>
+
 </body>
 </html>
+

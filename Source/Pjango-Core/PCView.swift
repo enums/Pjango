@@ -23,14 +23,14 @@ open class PCView: PCObject {
     }
     
     internal var _pjango_core_view_param: PCViewParam {
-        return objects ?? PCViewParam()
+        return viewParam ?? PCViewParam()
     }
         
     open var templateName: String {
         return ""
     }
     
-    open var objects: PCViewParam? {
+    open var viewParam: PCViewParam? {
         return nil
     }
     

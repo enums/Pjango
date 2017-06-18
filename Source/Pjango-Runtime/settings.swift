@@ -12,7 +12,7 @@ import Pjango_Demo
 
 internal func _pjango_runtime_setSettings() {
     
-    _pjango_user_setSettings()
+    pjangoUserSetSettings()
 
     //Pjango
     

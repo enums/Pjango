@@ -51,8 +51,16 @@ open class PCModel: PCObject, PCViewable {
         }
     }
     
+    open var viewParamPrefix: String {
+        return "_pjango_param_table_\(tableName)_"
+    }
+    
     public func toViewParam() -> PCViewParam {
-        return _pjango_core_model_fields_value
+        var param = PCViewParam()
+        _pjango_core_model_fields_value.forEach { (key, value) in
+            param["\(viewParamPrefix)\(key)"] = value
+        }
+        return param
     }
 
     

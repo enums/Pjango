@@ -15,14 +15,12 @@ open class PCListView: PCView {
         guard let objs = querySet else {
             return param
         }
-        if querySetContextName != "" {
-            param[querySetContextName] = objs.map { $0.toViewParam() }
-        }
+        param[viewParamListName] = objs.map { $0.toViewParam() }
         return param
     }
     
-    open var querySetContextName: String {
-        return ""
+    open var viewParamListName: String {
+        return "_pjango_param_table"
     }
     
     open var querySet: Array<PCViewable>? {

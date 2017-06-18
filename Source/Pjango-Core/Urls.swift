@@ -8,4 +8,4 @@
 
 import Foundation
 
-public var urlPatterns: Array<PCUrlConfig> = []
+public var pjangoUrlPatterns: Array<PCUrlConfig> = []

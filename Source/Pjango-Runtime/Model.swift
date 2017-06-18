@@ -28,7 +28,7 @@ internal func _pjango_runtime_setDataBase() -> PCDataBase {
         database.createScheme()
     }
     
-    let metas = _pjango_user_registerModels()
+    let metas = pjangoUserRegisterModels()
     
     metas.forEach { meta in
         if !database.isTableExist(meta.tableName) {

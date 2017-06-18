@@ -9,7 +9,7 @@
 import Foundation
 import Pjango_Core
 
-public func _pjango_user_setSettings() {
+public func pjangoUserSetSettings() {
     
     // Pjango
     #if os(macOS)
