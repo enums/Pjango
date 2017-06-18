@@ -34,7 +34,7 @@ _pjango_runtime_log.info("Configuring...")
 _pjango_runtime_setSettings()
 _pjango_runtime_setUrls()
 _pjango_core_runtime_database = _pjango_runtime_setDataBase()
-
+_pjango_runtime_setPlugin()
 
 // MARK: - Server
 _pjango_runtime_log.info("Starting...")

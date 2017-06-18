@@ -11,11 +11,6 @@ import PerfectMustache
 
 public typealias PCViewParam = Dictionary<String, Any>
 
-public protocol PCViewable {
-    
-    func toViewParam() -> PCViewParam
-    
-}
 open class PCView: PCObject {
     
     internal var _pjango_core_view_template_path: String {

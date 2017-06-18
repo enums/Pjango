@@ -21,3 +21,4 @@ public var _pjango_core_runtime_database = PCDataBase.empty
 
 public var _pjango_core_runtime_server = HTTPServer.init()
 
+public var _pjango_core_runtime_plugin = Array<PCPlugin>()

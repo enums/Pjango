@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		F3298EC61EF651730008F802 /* TimeZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3298EC51EF651730008F802 /* TimeZone.swift */; };
 		F3298EC81EF651AD0008F802 /* Index.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3298EC71EF651AD0008F802 /* Index.swift */; };
+		F33644A01EF6C0B200670D4E /* PCPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336449F1EF6C0B200670D4E /* PCPlugin.swift */; };
+		F33644A21EF6C19A00670D4E /* PCTimerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33644A11EF6C19A00670D4E /* PCTimerPlugin.swift */; };
+		F33644A51EF6C1ED00670D4E /* PCRunable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33644A41EF6C1ED00670D4E /* PCRunable.swift */; };
+		F33644A71EF6C20000670D4E /* PCViewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33644A61EF6C20000670D4E /* PCViewable.swift */; };
+		F33644A91EF6C6AB00670D4E /* Plugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33644A81EF6C6AB00670D4E /* Plugin.swift */; };
+		F33644AB1EF6C71600670D4E /* Plugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33644AA1EF6C71600670D4E /* Plugin.swift */; };
 		OBJ_1000 /* cms_cd.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_253 /* cms_cd.c */; };
 		OBJ_1001 /* cms_dd.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_254 /* cms_dd.c */; };
 		OBJ_1002 /* cms_enc.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_255 /* cms_enc.c */; };
@@ -1443,6 +1449,12 @@
 /* Begin PBXFileReference section */
 		F3298EC51EF651730008F802 /* TimeZone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeZone.swift; sourceTree = "<group>"; };
 		F3298EC71EF651AD0008F802 /* Index.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Index.swift; sourceTree = "<group>"; };
+		F336449F1EF6C0B200670D4E /* PCPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PCPlugin.swift; sourceTree = "<group>"; };
+		F33644A11EF6C19A00670D4E /* PCTimerPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PCTimerPlugin.swift; sourceTree = "<group>"; };
+		F33644A41EF6C1ED00670D4E /* PCRunable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PCRunable.swift; sourceTree = "<group>"; };
+		F33644A61EF6C20000670D4E /* PCViewable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PCViewable.swift; sourceTree = "<group>"; };
+		F33644A81EF6C6AB00670D4E /* Plugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plugin.swift; sourceTree = "<group>"; };
+		F33644AA1EF6C71600670D4E /* Plugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plugin.swift; sourceTree = "<group>"; };
 		OBJ_10 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		OBJ_100 /* NetEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetEvent.swift; sourceTree = "<group>"; };
 		OBJ_101 /* NetNamedPipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetNamedPipe.swift; sourceTree = "<group>"; };
@@ -2496,6 +2508,7 @@
 		F3298EC21EF61C770008F802 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				F33644A61EF6C20000670D4E /* PCViewable.swift */,
 				OBJ_24 /* PCView.swift */,
 			);
 			name = Base;
@@ -2507,6 +2520,36 @@
 				OBJ_29 /* Model.swift */,
 				OBJ_30 /* Settings.swift */,
 				OBJ_31 /* Urls.swift */,
+				F33644A81EF6C6AB00670D4E /* Plugin.swift */,
+			);
+			name = Pjango;
+			sourceTree = "<group>";
+		};
+		F336449E1EF6C06700670D4E /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				F33644A31EF6C19D00670D4E /* Base */,
+				F33644A11EF6C19A00670D4E /* PCTimerPlugin.swift */,
+			);
+			name = Component;
+			sourceTree = "<group>";
+		};
+		F33644A31EF6C19D00670D4E /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				F33644A41EF6C1ED00670D4E /* PCRunable.swift */,
+				F336449F1EF6C0B200670D4E /* PCPlugin.swift */,
+			);
+			name = Base;
+			sourceTree = "<group>";
+		};
+		F33644AD1EF6CC1F00670D4E /* Pjango */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_35 /* Model.swift */,
+				OBJ_37 /* Settings.swift */,
+				OBJ_38 /* Urls.swift */,
+				F33644AA1EF6C71600670D4E /* Plugin.swift */,
 			);
 			name = Pjango;
 			sourceTree = "<group>";
@@ -3238,9 +3281,7 @@
 		OBJ_33 /* Pjango-Runtime */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_35 /* Model.swift */,
-				OBJ_37 /* Settings.swift */,
-				OBJ_38 /* Urls.swift */,
+				F33644AD1EF6CC1F00670D4E /* Pjango */,
 				OBJ_36 /* Server.swift */,
 				OBJ_34 /* main.swift */,
 			);
@@ -3325,7 +3366,7 @@
 			path = ".build/checkouts/Perfect-Mustache.git-4271886153857801499/Sources";
 			sourceTree = SOURCE_ROOT;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -3335,7 +3376,6 @@
 				OBJ_41 /* Dependencies */,
 				OBJ_815 /* Products */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_51 /* PerfectHTTPServer 2.2.1 */ = {
@@ -3436,6 +3476,7 @@
 				F3298EC11EF61C420008F802 /* Pjango */,
 				F3298EBC1EF57E330008F802 /* Utility */,
 				F3298EBD1EF57E480008F802 /* Model */,
+				F336449E1EF6C06700670D4E /* Component */,
 			);
 			name = "Pjango-Core";
 			path = "Source/Pjango-Core";
@@ -3883,7 +3924,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_815 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -4059,7 +4100,9 @@
 				OBJ_1742 /* Extension.swift in Sources */,
 				OBJ_1743 /* PCCommandLineLog.swift in Sources */,
 				OBJ_1744 /* PCDataBase.swift in Sources */,
+				F33644A21EF6C19A00670D4E /* PCTimerPlugin.swift in Sources */,
 				OBJ_1745 /* PCDataBaseConfig.swift in Sources */,
+				F33644A01EF6C0B200670D4E /* PCPlugin.swift in Sources */,
 				OBJ_1746 /* PCDataBaseField.swift in Sources */,
 				OBJ_1748 /* PCDetailView.swift in Sources */,
 				OBJ_1749 /* PCListView.swift in Sources */,
@@ -4072,7 +4115,9 @@
 				OBJ_1756 /* PCView.swift in Sources */,
 				OBJ_1757 /* Pjango.swift in Sources */,
 				OBJ_1758 /* Settings.swift in Sources */,
+				F33644A71EF6C20000670D4E /* PCViewable.swift in Sources */,
 				OBJ_1759 /* Urls.swift in Sources */,
+				F33644A51EF6C1ED00670D4E /* PCRunable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4081,6 +4126,7 @@
 			buildActionMask = 0;
 			files = (
 				OBJ_1790 /* Model.swift in Sources */,
+				F33644A91EF6C6AB00670D4E /* Plugin.swift in Sources */,
 				OBJ_1791 /* Settings.swift in Sources */,
 				F3298EC81EF651AD0008F802 /* Index.swift in Sources */,
 				F3298EC61EF651730008F802 /* TimeZone.swift in Sources */,
@@ -4093,6 +4139,7 @@
 			buildActionMask = 0;
 			files = (
 				OBJ_1826 /* main.swift in Sources */,
+				F33644AB1EF6C71600670D4E /* Plugin.swift in Sources */,
 				OBJ_1827 /* Model.swift in Sources */,
 				OBJ_1828 /* Server.swift in Sources */,
 				OBJ_1829 /* Settings.swift in Sources */,
