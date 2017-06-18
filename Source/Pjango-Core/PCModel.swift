@@ -42,12 +42,18 @@ open class PCModel: PCObject, PCViewable {
     
     required public override init() {
         super.init()
-        let mirror = Mirror(reflecting: self)
-        mirror.children.forEach { _, value in
-            if let field = value as? PCDataBaseField {
-                _pjango_core_model_fields.append(field)
-                _pjango_core_model_fields_key.append(field.name)
-            }
+        doRegisterFields(registerFields())
+    }
+    
+    open func registerFields() -> [PCDataBaseField] {
+        return []
+    }
+    
+    fileprivate func doRegisterFields(_ fields: [PCDataBaseField]) {
+        _pjango_core_model_fields = fields
+        _pjango_core_model_fields_key = fields.map {
+            $0.model = self
+            return $0.name
         }
     }
     

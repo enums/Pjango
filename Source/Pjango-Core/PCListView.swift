@@ -15,7 +15,15 @@ open class PCListView: PCView {
         guard let objs = querySet else {
             return param
         }
-        param[viewParamListName] = objs.map { $0.toViewParam() }
+        param[viewParamListName] = objs.map { (obj) -> PCViewParam in
+            var param: Dictionary<String, Any> = obj.toViewParam()
+            if let extParam = viewParamUserField(withModel: obj) {
+                extParam.forEach { (key, value) in
+                    param[key] = value
+                }
+            }
+            return param
+        }
         return param
     }
     
@@ -23,7 +31,11 @@ open class PCListView: PCView {
         return "_pjango_param_table"
     }
     
-    open var querySet: Array<PCViewable>? {
+    open func viewParamUserField(withModel model: PCModel) -> PCViewParam? {
+        return nil
+    }
+    
+    open var querySet: Array<PCModel>? {
         return nil
     }
 }
