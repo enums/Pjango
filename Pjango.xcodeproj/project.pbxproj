@@ -649,7 +649,6 @@
 		OBJ_1744 /* PCDataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* PCDataBase.swift */; };
 		OBJ_1745 /* PCDataBaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* PCDataBaseConfig.swift */; };
 		OBJ_1746 /* PCDataBaseField.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* PCDataBaseField.swift */; };
-		OBJ_1747 /* PCDefaultTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* PCDefaultTemplate.swift */; };
 		OBJ_1748 /* PCDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_16 /* PCDetailView.swift */; };
 		OBJ_1749 /* PCListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* PCListView.swift */; };
 		OBJ_1750 /* PCModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* PCModel.swift */; };
@@ -1493,7 +1492,6 @@
 		OBJ_147 /* ameth_lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ameth_lib.c; sourceTree = "<group>"; };
 		OBJ_148 /* asn1_err.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = asn1_err.c; sourceTree = "<group>"; };
 		OBJ_149 /* asn1_gen.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = asn1_gen.c; sourceTree = "<group>"; };
-		OBJ_15 /* PCDefaultTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCDefaultTemplate.swift; sourceTree = "<group>"; };
 		OBJ_150 /* asn1_lib.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = asn1_lib.c; sourceTree = "<group>"; };
 		OBJ_151 /* asn1_par.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = asn1_par.c; sourceTree = "<group>"; };
 		OBJ_152 /* asn_mime.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = asn_mime.c; sourceTree = "<group>"; };
@@ -2434,10 +2432,9 @@
 		F3298EBC1EF57E330008F802 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_15 /* PCDefaultTemplate.swift */,
 				OBJ_11 /* PCCommandLineLog.swift */,
-				OBJ_22 /* PCSqlUtility.swift */,
 				OBJ_19 /* PCMustacheUtility.swift */,
+				OBJ_22 /* PCSqlUtility.swift */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -2445,9 +2442,7 @@
 		F3298EBD1EF57E480008F802 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_21 /* PCObject.swift */,
 				OBJ_18 /* PCModel.swift */,
-				OBJ_23 /* PCUrlConfig.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -2455,7 +2450,7 @@
 		F3298EBE1EF57E520008F802 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_24 /* PCView.swift */,
+				F3298EC21EF61C770008F802 /* Base */,
 				OBJ_16 /* PCDetailView.swift */,
 				OBJ_17 /* PCListView.swift */,
 			);
@@ -2465,12 +2460,40 @@
 		F3298EBF1EF57E640008F802 /* DB */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_13 /* PCDataBaseConfig.swift */,
-				OBJ_12 /* PCDataBase.swift */,
-				OBJ_14 /* PCDataBaseField.swift */,
+				F3298EC01EF61C2E0008F802 /* Base */,
 				OBJ_20 /* PCMySQLDataBase.swift */,
 			);
 			name = DB;
+			sourceTree = "<group>";
+		};
+		F3298EC01EF61C2E0008F802 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_13 /* PCDataBaseConfig.swift */,
+				OBJ_12 /* PCDataBase.swift */,
+				OBJ_14 /* PCDataBaseField.swift */,
+			);
+			name = Base;
+			sourceTree = "<group>";
+		};
+		F3298EC11EF61C420008F802 /* Pjango */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_25 /* Pjango.swift */,
+				OBJ_9 /* CoreGlobal.swift */,
+				OBJ_26 /* Settings.swift */,
+				OBJ_23 /* PCUrlConfig.swift */,
+				OBJ_27 /* Urls.swift */,
+			);
+			name = Pjango;
+			sourceTree = "<group>";
+		};
+		F3298EC21EF61C770008F802 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_24 /* PCView.swift */,
+			);
+			name = Base;
 			sourceTree = "<group>";
 		};
 		OBJ_105 /* PerfectCrypto 1.0.8 */ = {
@@ -3201,11 +3224,11 @@
 		OBJ_33 /* Pjango-Runtime */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_34 /* main.swift */,
 				OBJ_35 /* Model.swift */,
-				OBJ_36 /* Server.swift */,
 				OBJ_37 /* Settings.swift */,
 				OBJ_38 /* Urls.swift */,
+				OBJ_36 /* Server.swift */,
+				OBJ_34 /* main.swift */,
 			);
 			name = "Pjango-Runtime";
 			path = "Source/Pjango-Runtime";
@@ -3395,15 +3418,13 @@
 		OBJ_8 /* Pjango-Core */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_25 /* Pjango.swift */,
-				OBJ_9 /* CoreGlobal.swift */,
 				OBJ_10 /* Extension.swift */,
+				OBJ_21 /* PCObject.swift */,
+				F3298EC11EF61C420008F802 /* Pjango */,
 				F3298EBC1EF57E330008F802 /* Utility */,
 				F3298EBD1EF57E480008F802 /* Model */,
 				F3298EBF1EF57E640008F802 /* DB */,
 				F3298EBE1EF57E520008F802 /* View */,
-				OBJ_26 /* Settings.swift */,
-				OBJ_27 /* Urls.swift */,
 			);
 			name = "Pjango-Core";
 			path = "Source/Pjango-Core";
@@ -4029,7 +4050,6 @@
 				OBJ_1744 /* PCDataBase.swift in Sources */,
 				OBJ_1745 /* PCDataBaseConfig.swift in Sources */,
 				OBJ_1746 /* PCDataBaseField.swift in Sources */,
-				OBJ_1747 /* PCDefaultTemplate.swift in Sources */,
 				OBJ_1748 /* PCDetailView.swift in Sources */,
 				OBJ_1749 /* PCListView.swift in Sources */,
 				OBJ_1750 /* PCModel.swift in Sources */,

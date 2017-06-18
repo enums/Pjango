@@ -36,7 +36,7 @@ open class PCMySQLDataBase: PCDataBase {
             return nil
         }
         guard let results = mysql.storeResults() else {
-            return nil
+            return []
         }
         var resultArray = [PCDataBaseRecord]()
         while let row = results.next() {

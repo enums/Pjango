@@ -14,7 +14,12 @@ internal func _pjango_runtime_setSettings() {
     
     _pjango_user_setSettings()
 
+    //Pjango
+    
     TEMPLATES_DIR = "\(WORKSPACE_PATH)/\(TEMPLATES_DIR)"
+    
+    //Django
+    
     BASE_DIR = "\(WORKSPACE_PATH)/\(BASE_DIR)"
     STATIC_URL = "\(WORKSPACE_PATH)/\(STATIC_URL)"
 }

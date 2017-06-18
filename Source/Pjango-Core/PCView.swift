@@ -36,13 +36,17 @@ open class PCView: PCObject {
     
     required public override init() { }
         
-    open func getTemplate() -> String {
+    open func getTemplate(ignoreErrorTemplate: Bool = false) -> String {
         do {
             _pjango_core_log.debug("Render [\(_pjango_core_class_name)]:\nPath: \(_pjango_core_view_template_path)\nParam: \(_pjango_core_view_param)\n")
             return try PCMustacheUtility.getTemplate(path: _pjango_core_view_template_path, param: _pjango_core_view_param)
         } catch {
             _pjango_core_log.error(error)
-            return PCDefaultTemplate.template404
+            if ignoreErrorTemplate {
+                return ERROR_MSG_INTERNAL
+            } else {
+                return ERROR_TEMPLATE_INTERNAL?.getTemplate(ignoreErrorTemplate: true) ?? ERROR_MSG_INTERNAL
+            }
         }
     }
 }
