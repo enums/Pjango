@@ -13,7 +13,7 @@ public func pjangoUserRegisterModels() -> Array<PCMetaModel> {
     
     return [
         
-        TimeZoneModel.init(),
+        TimeZoneModel.meta,
         
     ]
     

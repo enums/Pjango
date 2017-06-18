@@ -40,6 +40,10 @@ open class PCModel: PCObject, PCViewable {
         }
     }
     
+    open static var meta: PCMetaModel {
+        return self.init()
+    }
+    
     required public override init() {
         super.init()
         doRegisterFields(registerFields())

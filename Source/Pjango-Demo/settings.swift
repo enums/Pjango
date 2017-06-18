@@ -12,15 +12,19 @@ import Pjango_Core
 public func pjangoUserSetSettings() {
     
     // Pjango
+    
     #if os(macOS)
         WORKSPACE_PATH = "/Users/Enum/Developer/macOS/Pjango/Workspace"
     #else
         WORKSPACE_PATH = "/media/psf/Home/Developer/macOS/Pjango/Workspace"
     #endif
-
+    
     DEBUG_LOG = true
 
+    
+    
     // Django
+    
     BASE_DIR = ""
 
     TEMPLATES_DIR = "templates"

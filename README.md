@@ -11,4 +11,4 @@
 
 A Swift server-side framework working like Django. Using MVC to design your website.
 
-Need OpenSSL 1.0.2.
+Need OpenSSL 1.0.2: [https://gist.github.com/mbejda/a1dabc45b32aaf8b25ae5e8d05923518](https://gist.github.com/mbejda/a1dabc45b32aaf8b25ae5e8d05923518)

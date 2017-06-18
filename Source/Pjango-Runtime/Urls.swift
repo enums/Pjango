@@ -12,7 +12,7 @@ import Pjango_Demo
 
 internal func _pjango_runtime_setUrls() {
     
-    pjangoUserSetUrls()
+    pjangoUrlPatterns = pjangoUserSetUrls()
     
     pjangoUrlPatterns.forEach { config in
         _pjango_core_runtime_urls_url2config[config.url] = config

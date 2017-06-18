@@ -8,11 +8,13 @@
 import Foundation
 import Pjango_Core
 
-public func pjangoUserSetUrls() {
+public func pjangoUserSetUrls() -> [PCUrlConfig] {
     
-    pjangoUrlPatterns = [
+    return [
+        
         pjangoUrl("", IndexView.self, "index"),
         pjangoUrl("time_zone", TimeZoneView.self, "time_zone"),
+        
     ]
     
 }
