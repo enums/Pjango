@@ -38,8 +38,9 @@ open class PCView: PCObject {
         
     open func getTemplate(ignoreErrorTemplate: Bool = false) -> String {
         do {
-            _pjango_core_log.debug("Render [\(_pjango_core_class_name)]:\nPath: \(_pjango_core_view_template_path)\nParam: \(_pjango_core_view_param)\n")
-            return try PCMustacheUtility.getTemplate(path: _pjango_core_view_template_path, param: _pjango_core_view_param)
+            let param = _pjango_core_view_param
+            _pjango_core_log.debug("Render [\(_pjango_core_class_name)]:\nPath: \(_pjango_core_view_template_path)\nParam: \(param)\n")
+            return try PCMustacheUtility.getTemplate(path: _pjango_core_view_template_path, param: param)
         } catch {
             _pjango_core_log.error(error)
             if ignoreErrorTemplate {
