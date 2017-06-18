@@ -15,6 +15,7 @@
 		F33644A71EF6C20000670D4E /* PCViewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33644A61EF6C20000670D4E /* PCViewable.swift */; };
 		F33644A91EF6C6AB00670D4E /* Plugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33644A81EF6C6AB00670D4E /* Plugin.swift */; };
 		F33644AB1EF6C71600670D4E /* Plugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33644AA1EF6C71600670D4E /* Plugin.swift */; };
+		F33644AF1EF6CF2000670D4E /* PCTaskPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33644AE1EF6CF2000670D4E /* PCTaskPlugin.swift */; };
 		OBJ_1000 /* cms_cd.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_253 /* cms_cd.c */; };
 		OBJ_1001 /* cms_dd.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_254 /* cms_dd.c */; };
 		OBJ_1002 /* cms_enc.c in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_255 /* cms_enc.c */; };
@@ -1455,6 +1456,7 @@
 		F33644A61EF6C20000670D4E /* PCViewable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PCViewable.swift; sourceTree = "<group>"; };
 		F33644A81EF6C6AB00670D4E /* Plugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plugin.swift; sourceTree = "<group>"; };
 		F33644AA1EF6C71600670D4E /* Plugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plugin.swift; sourceTree = "<group>"; };
+		F33644AE1EF6CF2000670D4E /* PCTaskPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PCTaskPlugin.swift; sourceTree = "<group>"; };
 		OBJ_10 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		OBJ_100 /* NetEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetEvent.swift; sourceTree = "<group>"; };
 		OBJ_101 /* NetNamedPipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetNamedPipe.swift; sourceTree = "<group>"; };
@@ -2529,6 +2531,7 @@
 			isa = PBXGroup;
 			children = (
 				F33644A31EF6C19D00670D4E /* Base */,
+				F33644AE1EF6CF2000670D4E /* PCTaskPlugin.swift */,
 				F33644A11EF6C19A00670D4E /* PCTimerPlugin.swift */,
 			);
 			name = Component;
@@ -4111,6 +4114,7 @@
 				OBJ_1752 /* PCMySQLDataBase.swift in Sources */,
 				OBJ_1753 /* PCObject.swift in Sources */,
 				OBJ_1754 /* PCSqlUtility.swift in Sources */,
+				F33644AF1EF6CF2000670D4E /* PCTaskPlugin.swift in Sources */,
 				OBJ_1755 /* PCUrlConfig.swift in Sources */,
 				OBJ_1756 /* PCView.swift in Sources */,
 				OBJ_1757 /* Pjango.swift in Sources */,

@@ -14,12 +14,17 @@ open class PCTimerPlugin: PCPlugin {
         return 1
     }
     
+    open var timerDelay: TimeInterval {
+        return 0
+    }
+    
     open var timerRepeatTimes: Int {
         return 0
     }
     
     override var _pjango_core_plugin_task: PCTask? {
         return {
+            Thread.sleep(forTimeInterval: self.timerDelay)
             if self.timerRepeatTimes <= 0 {
                 while true {
                     self.task?()
