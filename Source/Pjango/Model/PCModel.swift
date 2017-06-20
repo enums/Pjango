@@ -23,10 +23,10 @@ open class PCModel: PCObject, PCViewable {
     }
     
     open static func queryObjects() -> [PCModel]? {
-        guard let meta = _pjango_core_runtime_models_name2meta[_pjango_core_class_name] else {
+        guard let meta = PjangoRuntime._pjango_runtime_models_name2meta[_pjango_core_class_name] else {
             return nil
         }
-        guard let records = _pjango_core_runtime_database.selectTable(meta) else {
+        guard let records = PjangoRuntime._pjango_runtime_database.selectTable(meta) else {
             return nil
         }
         return records.map { record in

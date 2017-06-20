@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import MySQL
 
 public enum PCDataBaseState {
     case empty

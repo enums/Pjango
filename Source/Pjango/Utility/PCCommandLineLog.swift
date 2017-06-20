@@ -8,6 +8,8 @@
 
 import Foundation
 
+internal let _pjango_core_log = PCCommandLineLog.init(tag: "Pjango-Core")
+
 public class PCCommandLineLog {
     
     public var tag: String
