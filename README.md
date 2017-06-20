@@ -11,4 +11,34 @@
 
 A Swift server-side framework working like Django. Using MVC to design your website.
 
-Need OpenSSL 1.0.2: [https://gist.github.com/mbejda/a1dabc45b32aaf8b25ae5e8d05923518](https://gist.github.com/mbejda/a1dabc45b32aaf8b25ae5e8d05923518)
+
+## Usage
+
+- Need OpenSSL 1.0.2: [https://gist.github.com/mbejda/a1dabc45b32aaf8b25ae5e8d05923518](https://gist.github.com/mbejda/a1dabc45b32aaf8b25ae5e8d05923518)
+
+- Clone this repo.
+- macOS: Use Swift Package Manager to gen a xcodeproj:
+
+```bash
+$ swift package generate-xcodeproj
+```
+
+- Linux: Use Swift Package Manager to compile:
+
+```bash
+$ swift build
+```
+
+## Demo
+
+There is a simple demo. See: [https://github.com/enums/pjango-template](https://github.com/enums/pjango-template)
+
+## Component
+
+- [Pjango-MySQL](https://github.com/enums/pjango-mysql): MySQL support for Pjango.
+
+
+## Contact
+
+Mail me: [enum@enumsblog.com](mailto:enum@enumsblog.com)
+
