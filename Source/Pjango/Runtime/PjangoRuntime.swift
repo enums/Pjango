@@ -57,7 +57,7 @@ public class PjangoRuntime {
         
         // MARK: - Server
         _pjango_runtime_log.info("Starting...")
-        _pjango_runtime_setServer(port: port)
+        _pjango_runtime_setServer(port: port, delegate: delegate)
         do {
             try _pjango_runtime_server.start()
         } catch {
@@ -104,6 +104,12 @@ public class PjangoRuntime {
         let config = DATABASE
         let database = delegate.setDB()
         
+        _pjango_runtime_database = database
+        
+        guard database.state != .empty else {
+            return
+        }
+        
         database.setup()
         database.connect()
         
@@ -112,7 +118,6 @@ public class PjangoRuntime {
             database.createScheme()
         }
         
-        _pjango_runtime_database = database
     }
     
     internal static func _pjango_runtime_registerModels(delegate: PjangoDelegate) {
@@ -128,15 +133,33 @@ public class PjangoRuntime {
         }
     }
     
-    internal static func _pjango_runtime_setServer(port: UInt16) {
+    internal static func _pjango_runtime_setServer(port: UInt16, delegate: PjangoDelegate) {
         let routeList = _pjango_runtime_urls_url2config.map { (url, config) in
-            Route.init(uri: url, handler: config.handle)
+            Route.init(uri: url) { req, res in
+                config.handle(req, res)
+                res.completed()
+            }
         }
         let routes = Routes.init(routeList)
         let server = HTTPServer.init()
         server.documentRoot = STATIC_URL
         server.serverPort = port
         server.addRoutes(routes)
+        
+        var requestFilters = delegate.setRequestFilter()
+        let pjangoRequestFilters: [(HTTPRequestFilter, HTTPFilterPriority)] = [
+            (PCLogFilter.init(), .high),
+        ]
+        requestFilters.append(contentsOf: pjangoRequestFilters)
+        server.setRequestFilters(requestFilters)
+        
+        var responseFilters = delegate.setResponseFilter()
+        let pjangoResponseFilters: [(HTTPResponseFilter, HTTPFilterPriority)] = [
+            (PCLogFilter.init(), .high),
+            (PCNotFoundFilter.init(), .low)
+        ]
+        responseFilters.append(contentsOf: pjangoResponseFilters)
+        server.setResponseFilters(responseFilters)
         
         _pjango_runtime_server = server
     }

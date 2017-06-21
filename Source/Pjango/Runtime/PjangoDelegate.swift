@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import PerfectHTTP
 
 public protocol PjangoDelegate {
     
@@ -19,4 +20,8 @@ public protocol PjangoDelegate {
     func registerModels() -> [PCModel]
     
     func setDB() -> PCDataBase
+    
+    func setRequestFilter() -> [(HTTPRequestFilter, HTTPFilterPriority)]
+    
+    func setResponseFilter() -> [(HTTPResponseFilter, HTTPFilterPriority)]
 }

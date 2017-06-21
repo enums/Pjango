@@ -25,9 +25,31 @@ public extension Date {
 }
 
 public extension HTTPResponse {
-    func _pjango_safe_setResponse(_ body: String?) {
-        self.setHeader(.contentType, value: "text/html")
-        self.setBody(string: body ?? "Error")
-        self.completed()
+    
+    func _pjango_safe_setBody(_ body: String?, _ setContentLength: Bool = true) {
+        self.setBody(string: body ?? (ERROR_TEMPLATE_INTERNAL?.getTemplate() ?? ERROR_MSG_INTERNAL))
+        if setContentLength {
+            self.setHeader(.contentLength, value: "\(self.bodyBytes.count)")
+        }
+    }
+}
+
+public extension HTTPRequest {
+    func getUrlParam(key: String, defaultValue: String) -> String {
+        return self.param(name: key) ?? defaultValue
+    }
+    
+    func getFullUrl() -> String {
+        var url = self.header(.host) ?? "null"
+        url += self.path
+        if self.queryParams.count > 0 {
+            url += "?"
+            for (key, value) in self.queryParams.dropLast() {
+                url += "\(key)=\(value)&"
+            }
+            let (key, value) = self.queryParams.last!
+            url += "\(key)=\(value)"
+        }
+        return url
     }
 }
