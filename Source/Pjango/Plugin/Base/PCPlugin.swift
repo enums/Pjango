@@ -32,10 +32,10 @@ open class PCPlugin: PCObject, PCRunable {
     }
     
     public func run() {
-        _pjango_core_log.info("Component [\(_pjango_core_class_name)] run!")
+        _pjango_core_log.info("Plugin [\(_pjango_core_class_name)] run!")
         taskQueue.async {
             self._pjango_core_plugin_task?()
-            _pjango_core_log.info("Component [\(self._pjango_core_class_name)] done!")
+            _pjango_core_log.info("Plugin [\(self._pjango_core_class_name)] done!")
         }
     }
     

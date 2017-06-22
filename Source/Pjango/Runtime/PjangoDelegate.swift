@@ -25,3 +25,30 @@ public protocol PjangoDelegate {
     
     func setResponseFilter() -> [(HTTPResponseFilter, HTTPFilterPriority)]
 }
+
+public extension PjangoDelegate {
+    
+    func setSettings() { }
+    
+    func setUrls() -> [PCUrlConfig] { return [] }
+    
+    func registerPlugins() -> [PCPlugin] { return [] }
+    
+    func registerModels() -> [PCModel] { return [] }
+    
+    func setDB() -> PCDataBase { return PCDataBase.empty }
+    
+    func setRequestFilter() -> [(HTTPRequestFilter, HTTPFilterPriority)] {
+        return [
+            (PCLogFilter.init(), .high)
+        ]
+    }
+    
+    func setResponseFilter() -> [(HTTPResponseFilter, HTTPFilterPriority)] {
+        return [
+            (PCLogFilter.init(), .high),
+            (PCNotFoundFilter.init(), .low)
+        ]
+    }
+    
+}

@@ -146,20 +146,8 @@ public class PjangoRuntime {
         server.serverPort = port
         server.addRoutes(routes)
         
-        var requestFilters = delegate.setRequestFilter()
-        let pjangoRequestFilters: [(HTTPRequestFilter, HTTPFilterPriority)] = [
-            (PCLogFilter.init(), .high),
-        ]
-        requestFilters.append(contentsOf: pjangoRequestFilters)
-        server.setRequestFilters(requestFilters)
-        
-        var responseFilters = delegate.setResponseFilter()
-        let pjangoResponseFilters: [(HTTPResponseFilter, HTTPFilterPriority)] = [
-            (PCLogFilter.init(), .high),
-            (PCNotFoundFilter.init(), .low)
-        ]
-        responseFilters.append(contentsOf: pjangoResponseFilters)
-        server.setResponseFilters(responseFilters)
+        server.setRequestFilters(delegate.setRequestFilter())
+        server.setResponseFilters(delegate.setResponseFilter())
         
         _pjango_runtime_server = server
     }
