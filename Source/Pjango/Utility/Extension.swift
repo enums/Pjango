@@ -27,7 +27,7 @@ public extension Date {
 public extension HTTPResponse {
     
     func _pjango_safe_setBody(_ body: String?, _ setContentLength: Bool = true) {
-        self.setBody(string: body ?? (ERROR_INTERNAL_VIEW?.getTemplate() ?? ERROR_INTERNAL_MSG))
+        self.setBody(string: body ?? "nil")
         if setContentLength {
             self.setHeader(.contentLength, value: "\(self.bodyBytes.count)")
         }
@@ -40,7 +40,7 @@ public extension HTTPRequest {
     }
     
     func getFullUrl() -> String {
-        var url = self.header(.host) ?? "null"
+        var url = self.header(.host) ?? "nil"
         url += self.path
         if self.queryParams.count > 0 {
             url += "?"

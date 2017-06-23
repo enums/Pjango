@@ -39,16 +39,11 @@ public extension PjangoDelegate {
     func setDB() -> PCDataBase? { return nil }
     
     func setRequestFilter() -> [(HTTPRequestFilter, HTTPFilterPriority)]? {
-        return [
-            (PCLogFilter.init(), .high)
-        ]
+        return [(PCLogFilter.init(), .high)]
     }
     
     func setResponseFilter() -> [(HTTPResponseFilter, HTTPFilterPriority)]? {
-        return [
-            (PCLogFilter.init(), .high),
-            (PCNotFoundFilter.init(), .low)
-        ]
+        return [(PCLogFilter.init(), .high)]
     }
     
 }
