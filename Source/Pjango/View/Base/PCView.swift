@@ -37,7 +37,7 @@ open class PCView: PCObject {
         let handle: RequestHandler = { req, res in
             let view = self.init()
             guard view.checkRequest(req) else {
-                res._pjango_safe_setBody(ERROR_TEMPLATE_NOTFOUND?.getTemplate() ?? ERROR_MSG_NOTFOUND)
+                res._pjango_safe_setBody(ERROR_NOTFOUND_VIEW?.getTemplate() ?? ERROR_NOTFOUND_MSG)
                 return
             }
             res._pjango_safe_setBody(view.getTemplate())
@@ -57,14 +57,14 @@ open class PCView: PCObject {
     open func getTemplate(ignoreErrorTemplate: Bool = false) -> String {
         do {
             let param = _pjango_core_view_param
-            _pjango_core_log.debug("Render [\(_pjango_core_class_name)]:\nPath: \(_pjango_core_view_template_path)\nParam: \(param)")
+            _pjango_core_log.debug("Rendering [\(_pjango_core_class_name)]:\nTemplate: \(_pjango_core_view_template_path)\nParam: \(param)")
             return try PCMustacheUtility.getTemplate(path: _pjango_core_view_template_path, param: param)
         } catch {
             _pjango_core_log.error(error)
             if ignoreErrorTemplate {
-                return ERROR_MSG_INTERNAL
+                return ERROR_INTERNAL_MSG
             } else {
-                return ERROR_TEMPLATE_INTERNAL?.getTemplate(ignoreErrorTemplate: true) ?? ERROR_MSG_INTERNAL
+                return ERROR_INTERNAL_VIEW?.getTemplate(ignoreErrorTemplate: true) ?? ERROR_INTERNAL_MSG
             }
         }
     }

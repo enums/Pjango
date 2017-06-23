@@ -26,7 +26,7 @@ open class PCModel: PCObject, PCViewable {
         guard let meta = PjangoRuntime._pjango_runtime_models_name2meta[_pjango_core_class_name] else {
             return nil
         }
-        guard let records = PjangoRuntime._pjango_runtime_database.selectTable(meta) else {
+        guard let records = PjangoRuntime._pjango_runtime_database.selectTable(model: meta) else {
             return nil
         }
         return records.map { record in

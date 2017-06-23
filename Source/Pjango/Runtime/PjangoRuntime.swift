@@ -81,7 +81,7 @@ public class PjangoRuntime {
     
     internal static func _pjango_runtime_setUrls(delegate: PjangoDelegate) {
         
-        _pjango_runtime_url = delegate.setUrls()
+        _pjango_runtime_url = delegate.setUrls() ?? []
         
         _pjango_runtime_url.forEach { config in
             _pjango_runtime_urls_url2config[config.url] = config
@@ -93,7 +93,7 @@ public class PjangoRuntime {
     
     internal static func _pjango_runtime_registerPlugins(delegate: PjangoDelegate) {
         
-        _pjango_runtime_plugin = delegate.registerPlugins()
+        _pjango_runtime_plugin = delegate.registerPlugins() ?? []
         
         _pjango_runtime_plugin.forEach { $0.run() }
         
@@ -101,8 +101,7 @@ public class PjangoRuntime {
     
     internal static func _pjango_runtime_setDB(delegate: PjangoDelegate) {
         
-        let config = DATABASE
-        let database = delegate.setDB()
+        let database = delegate.setDB() ?? PCDataBase.empty
         
         _pjango_runtime_database = database
         
@@ -113,21 +112,23 @@ public class PjangoRuntime {
         database.setup()
         database.connect()
         
-        if !database.isSchemeExist(config.name) {
-            _pjango_runtime_log.info("Scheme `\(config.name)` is not exist! Create it.")
-            database.createScheme()
+        if let schema = database.schema {
+            if !database.isSchemaExist(schema) {
+                _pjango_runtime_log.info("Schema `\(schema)` is not exist! Create it.")
+                database.createSchema()
+            }
         }
         
     }
     
     internal static func _pjango_runtime_registerModels(delegate: PjangoDelegate) {
         
-        let metas = delegate.registerModels()
+        let metas = delegate.registerModels() ?? []
         
         metas.forEach { meta in
             if !_pjango_runtime_database.isTableExist(meta.tableName) {
                 _pjango_runtime_log.info("Table `\(meta.tableName)` is not exist! Create it.")
-                _pjango_runtime_database.createTable(meta)
+                _pjango_runtime_database.createTable(model: meta)
             }
             _pjango_runtime_models_name2meta[meta._pjango_core_class_name] = meta
         }
@@ -146,8 +147,8 @@ public class PjangoRuntime {
         server.serverPort = port
         server.addRoutes(routes)
         
-        server.setRequestFilters(delegate.setRequestFilter())
-        server.setResponseFilters(delegate.setResponseFilter())
+        server.setRequestFilters(delegate.setRequestFilter() ?? [])
+        server.setResponseFilters(delegate.setResponseFilter() ?? [])
         
         _pjango_runtime_server = server
     }

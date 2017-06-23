@@ -18,6 +18,10 @@ public enum PCDataBaseState {
 
 open class PCDataBase {
     
+    open var schema: String? {
+        return nil
+    }
+    
     open let config: PCDataBaseConfig
     open var state: PCDataBaseState
     
@@ -57,14 +61,14 @@ open class PCDataBase {
         guard state == .connected else {
             return nil
         }
-        _pjango_core_log.debug("Exc sql: \(sql)")
+        _pjango_core_log.debug("Query: \(sql)")
         return doQuery(sql)
     }
     
     open func doQuery(_ sql: PCSqlStatement) -> [PCDataBaseRecord]? { return nil }
     
-    open func isSchemeExist(_ scheme: String) -> Bool {
-        guard let ret = query(PCSqlUtility.selectScheme(scheme)) else {
+    open func isSchemaExist(_ scheme: String) -> Bool {
+        guard let ret = query(PCSqlUtility.selectSchema(scheme)) else {
             return false
         }
         if ret.count >= 1 {
@@ -74,51 +78,60 @@ open class PCDataBase {
         }
     }
     
+    
     open func isTableExist(_ table: String) -> Bool {
-        return query(PCSqlUtility.selectTable(config.name, table)) != nil ? true : false
+        return query(PCSqlUtility.selectTable(schema, table)) != nil ? true : false
     }
     
-    open func createScheme() {
-        guard query(PCSqlUtility.createScheme(config.name)) != nil else {
-            _pjango_core_log.error("Failed on creating scheme `\(config.name)`")
+    open func createSchema() {
+        guard let schema = schema else {
+            _pjango_core_log.error("Failed on creating schema. Schema value is nil.")
             return
         }
-        _pjango_core_log.info("Success on creating scheme `\(config.name)`")
-    }
-    
-    open func dropScheme() {
-        guard query(PCSqlUtility.dropScheme(config.name)) != nil else {
-            _pjango_core_log.error("Failed on droping scheme `\(config.name)`")
+        guard query(PCSqlUtility.createSchema(schema)) != nil else {
+            _pjango_core_log.error("Failed on creating schema `\(schema)`")
             return
         }
-        _pjango_core_log.info("Sucess on droping scheme `\(config.name)`")
+        _pjango_core_log.info("Success on creating schema `\(schema)`")
     }
     
-    open func createTable(_ model: PCModel) {
-        guard query(PCSqlUtility.createTable(config.name, model.tableName, model._pjango_core_model_fields)) != nil else {
-            _pjango_core_log.error("Failed on creating table `\(config.name).\(model.tableName)`")
+    open func dropSchema() {
+        guard let schema = schema else {
+            _pjango_core_log.error("Failed on droping schema. Schema value is nil.")
             return
         }
-        _pjango_core_log.info("Success on creating table `\(config.name).\(model.tableName)`")
+        guard query(PCSqlUtility.dropSchema(schema)) != nil else {
+            _pjango_core_log.error("Failed on droping schema `\(schema)`")
+            return
+        }
+        _pjango_core_log.info("Sucess on droping schema `\(schema)`")
     }
     
-    open func dropTable(_ model: PCMetaModel) {
+    open func createTable(model: PCModel) {
+        guard query(PCSqlUtility.createTable(schema, model.tableName, model._pjango_core_model_fields)) != nil else {
+            _pjango_core_log.error("Failed on creating table \(PCSqlUtility.schemeAndTableToStr(schema, model.tableName))")
+            return
+        }
+        _pjango_core_log.info("Success on creating table \(PCSqlUtility.schemeAndTableToStr(schema, model.tableName))")
+    }
+    
+    open func dropTable(model: PCMetaModel) {
         dropTable(model.tableName)
     }
     
     open func dropTable(_ table: String) {
-        guard query(PCSqlUtility.dropTable(config.name, table)) != nil else {
-            _pjango_core_log.error("Failed on droping table `\(config.name).\(table)`")
+        guard query(PCSqlUtility.dropTable(schema, table)) != nil else {
+            _pjango_core_log.error("Failed on droping table \(PCSqlUtility.schemeAndTableToStr(schema, table))")
             return
         }
-        _pjango_core_log.info("Success on droping table `\(config.name).\(table)`")
+        _pjango_core_log.info("Success on droping table \(PCSqlUtility.schemeAndTableToStr(schema, table))")
     }
     
-    open func selectTable(_ model: PCMetaModel) -> [PCDataBaseRecord]? {
-        return selectTable(model.tableName)
+    open func selectTable(model: PCMetaModel) -> [PCDataBaseRecord]? {
+        return selectTable(table: model.tableName)
     }
     
-    open func selectTable(_ table: String) -> [PCDataBaseRecord]? {
-        return query(PCSqlUtility.selectTable(config.name, table))
+    open func selectTable(table: String) -> [PCDataBaseRecord]? {
+        return query(PCSqlUtility.selectTable(schema, table))
     }
 }

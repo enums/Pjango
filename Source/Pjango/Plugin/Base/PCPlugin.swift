@@ -19,9 +19,7 @@ open class PCPlugin: PCObject, PCRunable {
     
     required override public init() { }
     
-    public var taskQueue: DispatchQueue {
-        return DispatchQueue.init(label: _pjango_core_class_name)
-    }
+    public var taskQueue: DispatchQueue = DispatchQueue.init(label: _pjango_core_class_name)
     
     open var task: PCTask? {
         return nil

@@ -17,7 +17,7 @@ internal class PCNotFoundFilter: HTTPResponseFilter {
     
     func filterHeaders(response: HTTPResponse, callback: (HTTPResponseFilterResult) -> ()) {
         if case .notFound = response.status {
-            let body = ERROR_TEMPLATE_NOTFOUND?.getTemplate() ?? ERROR_MSG_NOTFOUND
+            let body = ERROR_NOTFOUND_VIEW?.getTemplate() ?? ERROR_NOTFOUND_MSG
             response._pjango_safe_setBody(body)
             callback(.done)
         } else {

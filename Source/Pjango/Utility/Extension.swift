@@ -27,7 +27,7 @@ public extension Date {
 public extension HTTPResponse {
     
     func _pjango_safe_setBody(_ body: String?, _ setContentLength: Bool = true) {
-        self.setBody(string: body ?? (ERROR_TEMPLATE_INTERNAL?.getTemplate() ?? ERROR_MSG_INTERNAL))
+        self.setBody(string: body ?? (ERROR_INTERNAL_VIEW?.getTemplate() ?? ERROR_INTERNAL_MSG))
         if setContentLength {
             self.setHeader(.contentLength, value: "\(self.bodyBytes.count)")
         }

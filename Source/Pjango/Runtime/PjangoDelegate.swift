@@ -13,38 +13,38 @@ public protocol PjangoDelegate {
     
     func setSettings()
     
-    func setUrls() -> [PCUrlConfig]
+    func setUrls() -> [PCUrlConfig]?
     
-    func registerPlugins() -> [PCPlugin]
+    func registerPlugins() -> [PCPlugin]?
     
-    func registerModels() -> [PCModel]
+    func registerModels() -> [PCModel]?
     
-    func setDB() -> PCDataBase
+    func setDB() -> PCDataBase?
     
-    func setRequestFilter() -> [(HTTPRequestFilter, HTTPFilterPriority)]
+    func setRequestFilter() -> [(HTTPRequestFilter, HTTPFilterPriority)]?
     
-    func setResponseFilter() -> [(HTTPResponseFilter, HTTPFilterPriority)]
+    func setResponseFilter() -> [(HTTPResponseFilter, HTTPFilterPriority)]?
 }
 
 public extension PjangoDelegate {
     
     func setSettings() { }
     
-    func setUrls() -> [PCUrlConfig] { return [] }
+    func setUrls() -> [PCUrlConfig]? { return nil }
     
-    func registerPlugins() -> [PCPlugin] { return [] }
+    func registerPlugins() -> [PCPlugin]? { return nil }
     
-    func registerModels() -> [PCModel] { return [] }
+    func registerModels() -> [PCModel]? { return nil }
     
-    func setDB() -> PCDataBase { return PCDataBase.empty }
+    func setDB() -> PCDataBase? { return nil }
     
-    func setRequestFilter() -> [(HTTPRequestFilter, HTTPFilterPriority)] {
+    func setRequestFilter() -> [(HTTPRequestFilter, HTTPFilterPriority)]? {
         return [
             (PCLogFilter.init(), .high)
         ]
     }
     
-    func setResponseFilter() -> [(HTTPResponseFilter, HTTPFilterPriority)] {
+    func setResponseFilter() -> [(HTTPResponseFilter, HTTPFilterPriority)]? {
         return [
             (PCLogFilter.init(), .high),
             (PCNotFoundFilter.init(), .low)
