@@ -20,45 +20,36 @@ extension Int: PCModelDataBaseFieldType { }
 
 final public class PCDataBaseField {
     
-    public weak var model: PCModel? = nil {
-        didSet {
-            _pjango_core_set_model_block?()
-        }
-    }
+    public weak var model: PCModel? = nil 
     
-    fileprivate var _pjango_core_set_model_block: (()->Void)? = nil
+    internal var _pjango_core_set_model_block: (()->Void)? = nil
     
     public var value: PCModelDataBaseFieldType? {
         get {
-            return model?._pjango_core_model_fields_value[name]
+            return model?._pjango_core_model_get_filed_data(key: name)
         }
         set {
-            model?._pjango_core_model_fields_value[name] = newValue
+            guard let value = newValue else {
+                return
+            }
+            model?._pjango_core_model_set_field_data(key: name, value: value)
         }
     }
     
     public var name: String
     public var type: PCDataBaseFieldType {
         get {
-            switch value {
-            case is String?: return .string
-            case is Int?: return .int
-            default: return .unknow
-            }
+            return model?._pjango_core_model_fields_type[name] ?? .unknow
         }
         set {
-            switch newValue {
-            case .unknow: value = nil
-            case .string: value = ""
-            case .int: value = 0
-            }
+            model?._pjango_core_model_fields_type[name] = newValue
         }
     }
     public var length = 11
     public var notNull = false
     public var defaultValue: String?
     
-    public init(name: String, type: PCDataBaseFieldType = .unknow, length: Int = 11,
+    public init(name: String, type: PCDataBaseFieldType, length: Int = 11,
                 value: PCModelDataBaseFieldType? = nil, notNull: Bool = false, defaultValue: String? = nil) {
         self.name = name
         _pjango_core_set_model_block = { [weak self] in

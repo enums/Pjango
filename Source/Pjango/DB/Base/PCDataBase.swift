@@ -25,6 +25,8 @@ open class PCDataBase {
     open let config: PCDataBaseConfig
     open var state: PCDataBaseState
     
+    internal let _pjango_core_database_lock = NSLock.init()
+    
     public init(config: PCDataBaseConfig) {
         self.config = config
         self.state = .inited
@@ -37,6 +39,10 @@ open class PCDataBase {
     }
     
     open func setup() {
+        _pjango_core_database_lock.lock()
+        defer {
+            _pjango_core_database_lock.unlock()
+        }
         guard state != .empty else {
             return
         }
@@ -47,6 +53,10 @@ open class PCDataBase {
     open func doSetup() { }
     
     open func connect() {
+        _pjango_core_database_lock.lock()
+        defer {
+            _pjango_core_database_lock.unlock()
+        }
         guard state == .setuped || state == .disconnected else {
             return
         }
@@ -58,6 +68,10 @@ open class PCDataBase {
     
     @discardableResult
     open func query(_ sql: PCSqlStatement) -> [PCDataBaseRecord]? {
+        _pjango_core_database_lock.lock()
+        defer {
+            _pjango_core_database_lock.unlock()
+        }
         guard state == .connected else {
             return nil
         }

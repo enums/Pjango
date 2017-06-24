@@ -35,8 +35,8 @@ public extension HTTPResponse {
 }
 
 public extension HTTPRequest {
-    func getUrlParam(key: String, defaultValue: String) -> String {
-        return self.param(name: key) ?? defaultValue
+    func getUrlParam(key: String) -> String? {
+        return self.param(name: key)
     }
     
     func getFullUrl() -> String {

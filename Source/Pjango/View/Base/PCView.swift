@@ -37,11 +37,14 @@ open class PCView: PCObject {
     
     required public override init() { }
     
+    open weak var currentRequest: HTTPRequest? = nil
+    
     open static func asHandle() -> PCUrlHandle {
         let handle: RequestHandler = { req, res in
             let view = self.init()
+            view.currentRequest = req
             guard view.requestVaild(req) else {
-                guard let invaildHandle = view.requestInvaildHandle()?.handle else {
+                guard let invaildHandle = view.requestInvaildHandle() else {
                     res._pjango_safe_setBody("Oops! Request is invaild but the `invaild handle` is nil!")
                     _pjango_core_log.error("Failed on rendering view when request is invaild!")
                     return
@@ -50,6 +53,7 @@ open class PCView: PCObject {
                 return
             }
             res._pjango_safe_setBody(view.getTemplate())
+            view.currentRequest = nil
         }
         return handle
 
@@ -59,7 +63,7 @@ open class PCView: PCObject {
         return req.method == .get
     }
     
-    open func requestInvaildHandle() -> PCUrlConfig? {
+    open func requestInvaildHandle() -> PCUrlHandle? {
         return nil
     }
         
