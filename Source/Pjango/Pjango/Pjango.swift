@@ -10,16 +10,23 @@ import PerfectHTTP
 
 public typealias PCUrlHandle = RequestHandler
 
-public func pjangoUrl(_ url: String, name: String? = nil, handle: @escaping (() -> PCUrlHandle)) -> PCUrlConfig {
-    return pjangoUrl(url, name: name, handle: handle())
+public func pjangoUrl(_ url: String, host: String? = nil, name: String? = nil, handle: @escaping (() -> PCUrlHandle)) -> PCUrlConfig {
+    return pjangoUrl(url, host: host, name: name, handle: handle())
 }
 
-public func pjangoUrl(_ url: String, name: String? = nil, handle: @escaping PCUrlHandle) -> PCUrlConfig {
-    return PCUrlConfig(url: url, handle: handle, name: name)
+public func pjangoUrl(_ url: String, host: String? = nil, name: String? = nil, handle: @escaping PCUrlHandle) -> PCUrlConfig {
+    return PCUrlConfig(url: url, handle: handle, host: host, name: name)
 }
 
 public func pjangoUrlReverse(name: String) -> String? {
-    return PjangoRuntime._pjango_runtime_urls_name2config[name]?.url
+    guard let config = PjangoRuntime._pjango_runtime_urls_name2config[name] else {
+        return nil
+    }
+    if let host = config.host {
+        return "\(host)/\(config.url)"
+    } else {
+        return "/\(config.url)"
+    }
 }
 
 public func pjangoUrlConfigReverse(name: String) -> PCUrlConfig? {

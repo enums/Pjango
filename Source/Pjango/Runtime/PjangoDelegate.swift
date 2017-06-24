@@ -13,7 +13,7 @@ public protocol PjangoDelegate {
     
     func setSettings()
     
-    func setUrls() -> [PCUrlConfig]?
+    func setUrls() -> [String: [PCUrlConfig]]?
     
     func registerPlugins() -> [PCPlugin]?
     
@@ -30,8 +30,8 @@ public extension PjangoDelegate {
     
     func setSettings() { }
     
-    func setUrls() -> [PCUrlConfig]? { return nil }
-    
+    func setUrls() -> [String: [PCUrlConfig]]? { return nil }
+
     func registerPlugins() -> [PCPlugin]? { return nil }
     
     func registerModels() -> [PCModel]? { return nil }

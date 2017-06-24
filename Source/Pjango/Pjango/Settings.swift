@@ -12,6 +12,8 @@ import Foundation
 
 public var WORKSPACE_PATH = ""
 
+public var SERVER_PORT: UInt16 = 8080
+
 public var DEBUG_LOG = true
 
 // Django

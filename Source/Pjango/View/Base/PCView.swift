@@ -22,6 +22,10 @@ open class PCView: PCObject {
     internal var _pjango_core_view_param: PCViewParam {
         return viewParam ?? PCViewParam()
     }
+    
+    open static var meta: PCView {
+        return self.init()
+    }
         
     open var templateName: String? {
         return nil

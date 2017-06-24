@@ -8,6 +8,6 @@
 
 import Foundation
 
-public class PCDetailView: PCView {
+open class PCDetailView: PCView {
     
 }

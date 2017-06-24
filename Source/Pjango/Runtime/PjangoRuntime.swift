@@ -14,9 +14,9 @@ public class PjangoRuntime {
     
     internal static let _pjango_runtime_log = PCCommandLineLog.init(tag: "Pjango-Runtime")
     
-    public static var _pjango_runtime_urls_url2config = Dictionary<String, PCUrlConfig>()
-    
     public static var _pjango_runtime_urls_name2config = Dictionary<String, PCUrlConfig>()
+    
+    public static var _pjango_runtime_urls_list = Array<PCUrlConfig>()
     
     public static var _pjango_runtime_models_name2meta = Dictionary<String, PCMetaModel>()
     
@@ -26,8 +26,6 @@ public class PjangoRuntime {
     
     public static var _pjango_runtime_plugin = Array<PCPlugin>()
     
-    public static var _pjango_runtime_url = Array<PCUrlConfig>()
-    
     public static func run(delegate: PjangoDelegate) {
         _pjango_runtime_run(delegate: delegate)
     }
@@ -35,17 +33,6 @@ public class PjangoRuntime {
     internal static func _pjango_runtime_run(delegate: PjangoDelegate) {
         // MARK: - Prepare
         _pjango_runtime_log.info("Hello Pjango!")
-        
-        // MARK: - CommandLine
-        guard CommandLine.argc >= 2 else {
-            _pjango_runtime_log.error("Please input port!")
-            exit(0)
-        }
-        
-        guard let port = UInt16(CommandLine.arguments[1]) else {
-            _pjango_runtime_log.error("Illegal port!")
-            exit(0)
-        }
         
         // MARK: - Configuration
         _pjango_runtime_log.info("Configuring...")
@@ -57,7 +44,7 @@ public class PjangoRuntime {
         
         // MARK: - Server
         _pjango_runtime_log.info("Starting...")
-        _pjango_runtime_setServer(port: port, delegate: delegate)
+        _pjango_runtime_setServer(delegate: delegate)
         do {
             try _pjango_runtime_server.start()
         } catch {
@@ -81,12 +68,20 @@ public class PjangoRuntime {
     
     internal static func _pjango_runtime_setUrls(delegate: PjangoDelegate) {
         
-        _pjango_runtime_url = delegate.setUrls() ?? []
+        guard let list = delegate.setUrls() else {
+            return
+        }
         
-        _pjango_runtime_url.forEach { config in
-            _pjango_runtime_urls_url2config[config.url] = config
-            if let name = config.name {
-                _pjango_runtime_urls_name2config[name] = config
+        list.forEach { (host, configList) in
+            guard configList.count > 0 else {
+                return
+            }
+            for var config in configList {
+                config.host = host
+                _pjango_runtime_urls_list.append(config)
+                if let name = config.name {
+                    _pjango_runtime_urls_name2config[name] = config
+                }
             }
         }
     }
@@ -134,17 +129,70 @@ public class PjangoRuntime {
         }
     }
     
-    internal static func _pjango_runtime_setServer(port: UInt16, delegate: PjangoDelegate) {
-        let routeList = _pjango_runtime_urls_url2config.map { (url, config) in
-            Route.init(uri: url) { req, res in
+    internal static func _pjango_runtime_setServer(delegate: PjangoDelegate) {
+        
+        
+        var allConfig = [PCUrlConfig]()
+        
+        var leftConfig = [PCUrlConfig]()
+
+        _pjango_runtime_urls_list.forEach {
+            if $0.host == nil || $0.host == "" {
+                allConfig.append($0)
+            } else {
+                leftConfig.append($0)
+            }
+        }
+        
+        //[host: [url: config]] -> [url: [(host, config)]]
+        //[host: [url: config]]
+        var hostUrlConfig = [String: [String: PCUrlConfig]]()
+        
+        leftConfig.forEach { config in
+            if let host = config.host {
+                if hostUrlConfig[host] == nil {
+                    hostUrlConfig[host] = [String: PCUrlConfig]()
+                }
+                hostUrlConfig[host]![config.url] = config
+            }
+        }
+        //[url: [(host, config)]]
+        var urlHostConfig = [String: [(String, PCUrlConfig)]]()
+        for (host, urlConfig) in hostUrlConfig {
+            for (url, config) in urlConfig {
+                if urlHostConfig[url] == nil {
+                    urlHostConfig[url] = [(host, config)]
+                } else {
+                    urlHostConfig[url]!.append((host, config))
+                }
+            }
+        }
+        
+        var routeList = allConfig.map { config in
+            Route.init(uri: config.url) { req, res in
                 config.handle(req, res)
                 res.completed()
             }
         }
+        
+        for (url, configList) in urlHostConfig {
+            let route = Route.init(uri: url) { req, res in
+                guard let index = configList.index(where: { $0.0 == req.header(.host) }) else {
+                    res.status = .notFound
+                    res.completed()
+                    return
+                }
+                let (_, config) = configList[index]
+                config.handle(req, res)
+                res.completed()
+            }
+            routeList.append(route)
+        }
+
         let routes = Routes.init(routeList)
         let server = HTTPServer.init()
         server.documentRoot = STATIC_URL
-        server.serverPort = port
+        server.serverPort = SERVER_PORT
         server.addRoutes(routes)
         
         server.setRequestFilters(delegate.setRequestFilter() ?? [])
