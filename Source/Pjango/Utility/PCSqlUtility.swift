@@ -14,7 +14,7 @@ public typealias PCDataBaseRecord = [String?]
 final public class PCSqlUtility {
     
     public static func createSchema(_ name: String) -> PCSqlStatement {
-        return "CREATE SCHEMA `\(name)` ;"
+        return "CREATE SCHEMA `\(name)` DEFAULT CHARACTER SET utf8mb4;"
     }
     
     public static func dropSchema(_ name: String) -> PCSqlStatement {

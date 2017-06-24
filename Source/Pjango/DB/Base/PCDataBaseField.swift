@@ -20,7 +20,13 @@ extension Int: PCModelDataBaseFieldType { }
 
 final public class PCDataBaseField {
     
-    public weak var model: PCModel? = nil
+    public weak var model: PCModel? = nil {
+        didSet {
+            _pjango_core_set_model_block?()
+        }
+    }
+    
+    fileprivate var _pjango_core_set_model_block: (()->Void)? = nil
     
     public var value: PCModelDataBaseFieldType? {
         get {
@@ -48,18 +54,20 @@ final public class PCDataBaseField {
             }
         }
     }
-    public var length: Int
+    public var length = 11
     public var notNull = false
     public var defaultValue: String?
     
     public init(name: String, type: PCDataBaseFieldType = .unknow, length: Int = 11,
                 value: PCModelDataBaseFieldType? = nil, notNull: Bool = false, defaultValue: String? = nil) {
         self.name = name
-        self.length = length
-        self.value = value
-        self.type = type
-        self.notNull = notNull
-        self.defaultValue = defaultValue
+        _pjango_core_set_model_block = { [weak self] in
+            self?.length = length
+            self?.value = value
+            self?.type = type
+            self?.notNull = notNull
+            self?.defaultValue = defaultValue
+        }
     }
     
     
