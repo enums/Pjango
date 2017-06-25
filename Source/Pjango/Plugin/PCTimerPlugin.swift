@@ -27,12 +27,14 @@ open class PCTimerPlugin: PCPlugin {
             Thread.sleep(forTimeInterval: self.timerDelay)
             if self.timerRepeatTimes <= 0 {
                 while true {
+                    _pjango_core_log.debug("Plugin [\(self._pjango_core_class_name)] triggered!")
                     self.task?()
                     Thread.sleep(forTimeInterval: self.timerInterval)
                 }
             } else {
                 var time = 0
                 while true {
+                    _pjango_core_log.debug("Plugin [\(self._pjango_core_class_name)] triggered!")
                     self.task?()
                     time += 1
                     if time >= self.timerRepeatTimes {

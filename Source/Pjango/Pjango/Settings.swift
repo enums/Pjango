@@ -16,6 +16,10 @@ public var SERVER_PORT: UInt16 = 8080
 
 public var DEBUG_LOG = true
 
+public var LOG_TO_FILE = true
+
+public var LOG_PATH = "pjango.log"
+
 // Django
 public var BASE_DIR = ""
 

@@ -12,7 +12,7 @@ import PerfectHTTPServer
 
 public class PjangoRuntime {
     
-    internal static let _pjango_runtime_log = PCCommandLineLog.init(tag: "Pjango-Runtime")
+    internal static let _pjango_runtime_log = PCLog.init(tag: "Pjango-Runtime")
     
     public static var _pjango_runtime_urls_name2config = Dictionary<String, PCUrlConfig>()
     
@@ -32,10 +32,10 @@ public class PjangoRuntime {
     
     internal static func _pjango_runtime_run(delegate: PjangoDelegate) {
         // MARK: - Prepare
-        _pjango_runtime_log.info("Hello Pjango!")
+        print("Hello Pjango!")
         
         // MARK: - Configuration
-        _pjango_runtime_log.info("Configuring...")
+        print("Configuring...")
         _pjango_runtime_setSettings(delegate: delegate)
         _pjango_runtime_setUrls(delegate: delegate)
         _pjango_runtime_setDB(delegate: delegate)
@@ -59,6 +59,7 @@ public class PjangoRuntime {
         //Pjango
         
         TEMPLATES_DIR = "\(WORKSPACE_PATH)/\(TEMPLATES_DIR)"
+        LOG_PATH = "\(WORKSPACE_PATH)/\(LOG_PATH)"
         
         //Django
         
