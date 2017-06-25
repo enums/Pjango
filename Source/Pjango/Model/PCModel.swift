@@ -68,6 +68,8 @@ open class PCModel: PCObject, PCViewable {
     
     internal static var _pjango_core_model_cache_time = Dictionary<String, TimeInterval>()
     
+    internal var _pjango_core_model_id: Int? = nil
+    
     open var tableName: String {
         return ""
     }
@@ -76,7 +78,12 @@ open class PCModel: PCObject, PCViewable {
         return nil
     }
     
-    open static func queryObjects() -> [PCModel]? {
+    open class func cacheRemove() {
+        _pjango_core_model_cache[_pjango_core_class_name] = nil
+        _pjango_core_model_cache_time[_pjango_core_class_name] = nil
+    }
+    
+    open class func queryObjects() -> [PCModel]? {
         guard let meta = PjangoRuntime._pjango_runtime_models_name2meta[_pjango_core_class_name] else {
             return nil
         }
@@ -95,14 +102,36 @@ open class PCModel: PCObject, PCViewable {
             _pjango_core_model_cache_time[_pjango_core_class_name] = nowTime.timeIntervalSince1970
             records = recordsFromDB
         }
-        return records.map { record in
+        return records.flatMap { record in
             var record = record
-            record.removeFirst()
+            guard let idStr = record.removeFirst(), let id = Int(idStr) else {
+                return nil
+            }
             let model = self.init()
+            model._pjango_core_model_id = id
             for i in 0..<record.count {
                 model._pjango_core_model_set_field_data(index: i, value: record[i] as Any)
             }
             return model
+        }
+    }
+    
+    open class func insertObject(_ model: PCModel) -> Bool {
+        if PjangoRuntime._pjango_runtime_database.insertModel(model) == true {
+            cacheRemove()
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    @discardableResult
+    open class func updateObject(_ model: PCModel) -> Bool {
+        if PjangoRuntime._pjango_runtime_database.updateModel(model) == true {
+            cacheRemove()
+            return true
+        } else {
+            return false
         }
     }
     

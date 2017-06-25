@@ -70,7 +70,7 @@ open class PCView: PCObject {
     open func getTemplate() -> String {
         do {
             let param = _pjango_core_view_param
-            _pjango_core_log.debug("Rendering [\(_pjango_core_class_name)]:\nTemplate: \(_pjango_core_view_template_path)\nParam: \(param)")
+            _pjango_core_log.debug("Rendering [\(_pjango_core_class_name)]:\nTemplate: \(_pjango_core_view_template_path)")
             return try PCMustacheUtility.getTemplate(path: _pjango_core_view_template_path, param: param)
         } catch {
             _pjango_core_log.error(error)

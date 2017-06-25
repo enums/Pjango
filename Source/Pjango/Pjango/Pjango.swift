@@ -23,7 +23,7 @@ public func pjangoUrlReverse(name: String) -> String? {
         return nil
     }
     if let host = config.host {
-        return "\(host)/\(config.url)"
+        return "http://\(host)/\(config.url)"
     } else {
         return "/\(config.url)"
     }

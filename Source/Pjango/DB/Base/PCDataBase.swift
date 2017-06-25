@@ -148,4 +148,55 @@ open class PCDataBase {
     open func selectTable(table: String) -> [PCDataBaseRecord]? {
         return query(PCSqlUtility.selectTable(schema, table))
     }
+    
+    open func insertModel(_ model: PCModel) -> Bool {
+        let records = model._pjango_core_model_fields.flatMap { (field) -> String? in
+            switch field.type {
+            case .string: return field.strValue
+            case .int: return "\(field.intValue)"
+            case .unknow: return nil
+            }
+        }
+        guard records.count == model._pjango_core_model_fields.count else {
+            return false
+        }
+        guard query(PCSqlUtility.insertRecord(schema, model.tableName, records)) != nil else {
+            _pjango_core_log.error("Failed on insert model \(PCSqlUtility.schemeAndTableToStr(schema, model.tableName))")
+            return false
+        }
+        return true
+    }
+    
+    open func updateModel(_ model: PCModel) -> Bool {
+        guard let id = model._pjango_core_model_id else {
+            return false
+        }
+        let updateStr = model._pjango_core_model_fields_key.flatMap { (key) -> String? in
+            guard let type = model._pjango_core_model_fields_type[key], let value = model._pjango_core_model_get_filed_data(key: key) else {
+                return nil
+            }
+            switch type {
+            case .string:
+                guard let strValue = value as? String else {
+                    return nil
+                }
+                return strValue
+            case .int:
+                guard let intValue = value as? Int else {
+                    return nil
+                }
+                return "\(intValue)"
+            case .unknow: return nil
+            }
+        }
+        guard updateStr.count == model._pjango_core_model_fields_key.count else {
+            return false
+        }
+        guard query(PCSqlUtility.updateRecord(schema, model.tableName, id: id, fields: model._pjango_core_model_fields_key, record: updateStr)) != nil else {
+            _pjango_core_log.error("Failed on update model \(PCSqlUtility.schemeAndTableToStr(schema, model.tableName))")
+            return false
+        }
+        return true
+    }
+    
 }

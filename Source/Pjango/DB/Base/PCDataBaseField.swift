@@ -36,6 +36,24 @@ final public class PCDataBaseField {
         }
     }
     
+    public var intValue: Int {
+        get {
+            return value as! Int
+        }
+        set {
+            value = newValue
+        }
+    }
+    
+    public var strValue: String {
+        get {
+            return value as! String
+        }
+        set {
+            value = newValue
+        }
+    }
+    
     public var name: String
     public var type: PCDataBaseFieldType {
         get {
