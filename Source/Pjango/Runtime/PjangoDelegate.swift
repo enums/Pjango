@@ -20,10 +20,6 @@ public protocol PjangoDelegate {
     func registerModels() -> [PCModel]?
     
     func setDB() -> PCDataBase?
-    
-    func setRequestFilter() -> [(HTTPRequestFilter, HTTPFilterPriority)]?
-    
-    func setResponseFilter() -> [(HTTPResponseFilter, HTTPFilterPriority)]?
 }
 
 public extension PjangoDelegate {
@@ -37,13 +33,5 @@ public extension PjangoDelegate {
     func registerModels() -> [PCModel]? { return nil }
     
     func setDB() -> PCDataBase? { return nil }
-    
-    func setRequestFilter() -> [(HTTPRequestFilter, HTTPFilterPriority)]? {
-        return [(PCLogFilter.init(), .high)]
-    }
-    
-    func setResponseFilter() -> [(HTTPResponseFilter, HTTPFilterPriority)]? {
-        return [(PCLogFilter.init(), .high)]
-    }
     
 }

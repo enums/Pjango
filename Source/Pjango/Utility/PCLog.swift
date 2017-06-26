@@ -30,7 +30,7 @@ public class PCLog {
     }
     
     public func debug(_ msg: String) {
-        if DEBUG_LOG {
+        if PJANGO_LOG_DEBUG {
             _pjango_core_log_msg("[\(Date.init().stringValue)][\(tag)][DEBUG]: \(msg)")
         }
     }
@@ -45,10 +45,10 @@ public class PCLog {
     
     internal func _pjango_core_log_msg(_ msg: String) {
         print(msg)
-        if LOG_TO_FILE {
+        if PJANGO_LOG_TO_FILE {
             _pjang_core_log_queue.async {
                 if logFile == nil {
-                    let file = File.init(LOG_PATH)
+                    let file = File.init(PJANGO_LOG_PATH)
                     do {
                         try file.open(.readWrite)
                         logFile = file

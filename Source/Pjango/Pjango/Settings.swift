@@ -10,20 +10,20 @@ import Foundation
 
 // Pjango
 
-public var WORKSPACE_PATH = ""
+public var PJANGO_WORKSPACE_PATH = ""
 
-public var SERVER_PORT: UInt16 = 8080
+public var PJANGO_SERVER_PORT: UInt16 = 8080
 
-public var DEBUG_LOG = true
+public var PJANGO_LOG_DEBUG = true
 
-public var LOG_TO_FILE = true
+public var PJANGO_LOG_TO_FILE = true
 
-public var LOG_PATH = "pjango.log"
+public var PJANGO_LOG_PATH = "pjango.log"
 
 // Django
-public var BASE_DIR = ""
+public var PJANGO_BASE_DIR = ""
 
-public var TEMPLATES_DIR = "templates"
+public var PJANGO_TEMPLATES_DIR = "templates"
 
-public var STATIC_URL = "static"
+public var PJANGO_STATIC_URL = "static"
 

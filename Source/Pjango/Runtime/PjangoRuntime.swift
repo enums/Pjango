@@ -58,13 +58,13 @@ public class PjangoRuntime {
         
         //Pjango
         
-        TEMPLATES_DIR = "\(WORKSPACE_PATH)/\(TEMPLATES_DIR)"
-        LOG_PATH = "\(WORKSPACE_PATH)/\(LOG_PATH)"
+        PJANGO_TEMPLATES_DIR = "\(PJANGO_WORKSPACE_PATH)/\(PJANGO_TEMPLATES_DIR)"
+        PJANGO_LOG_PATH = "\(PJANGO_WORKSPACE_PATH)/\(PJANGO_LOG_PATH)"
         
         //Django
         
-        BASE_DIR = "\(WORKSPACE_PATH)/\(BASE_DIR)"
-        STATIC_URL = "\(WORKSPACE_PATH)/\(STATIC_URL)"
+        PJANGO_BASE_DIR = "\(PJANGO_WORKSPACE_PATH)/\(PJANGO_BASE_DIR)"
+        PJANGO_STATIC_URL = "\(PJANGO_WORKSPACE_PATH)/\(PJANGO_STATIC_URL)"
     }
     
     internal static func _pjango_runtime_setUrls(delegate: PjangoDelegate) {
@@ -91,7 +91,14 @@ public class PjangoRuntime {
         
         _pjango_runtime_plugin = delegate.registerPlugins() ?? []
         
-        _pjango_runtime_plugin.forEach { $0.run() }
+        _pjango_runtime_plugin.forEach {
+            if let filter = $0 as? PCHTTPFilterPlugin {
+                _pjango_runtime_server.setRequestFilters([(filter, filter.priority)])
+                _pjango_runtime_server.setResponseFilters([(filter, filter.priority)])
+            } else {
+                $0.run()
+            }
+        }
         
     }
     
@@ -138,7 +145,7 @@ public class PjangoRuntime {
         var leftConfig = [PCUrlConfig]()
 
         _pjango_runtime_urls_list.forEach {
-            if $0.host == nil || $0.host == "" {
+            if $0.host == nil || $0.host == "" || $0.host == "default" {
                 allConfig.append($0)
             } else {
                 leftConfig.append($0)
@@ -191,15 +198,9 @@ public class PjangoRuntime {
         }
 
         let routes = Routes.init(routeList)
-        let server = HTTPServer.init()
-        server.documentRoot = STATIC_URL
-        server.serverPort = SERVER_PORT
-        server.addRoutes(routes)
-        
-        server.setRequestFilters(delegate.setRequestFilter() ?? [])
-        server.setResponseFilters(delegate.setResponseFilter() ?? [])
-        
-        _pjango_runtime_server = server
+        _pjango_runtime_server.documentRoot = PJANGO_STATIC_URL
+        _pjango_runtime_server.serverPort = PJANGO_SERVER_PORT
+        _pjango_runtime_server.addRoutes(routes)
     }
 
 }

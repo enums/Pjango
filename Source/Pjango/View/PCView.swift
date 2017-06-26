@@ -16,7 +16,7 @@ public typealias PCViewParam = Dictionary<String, Any>
 open class PCView: PCObject {
     
     internal var _pjango_core_view_template_path: String {
-        return "\(TEMPLATES_DIR)/\(templateName ?? "")"
+        return "\(PJANGO_TEMPLATES_DIR)/\(templateName ?? "")"
     }
     
     internal var _pjango_core_view_param: PCViewParam {
