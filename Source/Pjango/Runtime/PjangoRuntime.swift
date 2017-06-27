@@ -16,7 +16,7 @@ public class PjangoRuntime {
     
     public static var _pjango_runtime_urls_name2config = Dictionary<String, PCUrlConfig>()
     
-    public static var _pjango_runtime_urls_list = Array<PCUrlConfig>()
+    public static var _pjango_runtime_urls_list = Array<(String, PCUrlConfig)>()
     
     public static var _pjango_runtime_models_name2meta = Dictionary<String, PCMetaModel>()
     
@@ -77,11 +77,10 @@ public class PjangoRuntime {
             guard configList.count > 0 else {
                 return
             }
-            for var config in configList {
-                config.host = host
-                _pjango_runtime_urls_list.append(config)
+            for config in configList {
+                _pjango_runtime_urls_list.append((host, config))
                 if let name = config.name {
-                    _pjango_runtime_urls_name2config[name] = config
+                    _pjango_runtime_urls_name2config["\(host)@\(name)"] = config
                 }
             }
         }
@@ -140,15 +139,17 @@ public class PjangoRuntime {
     internal static func _pjango_runtime_setServer(delegate: PjangoDelegate) {
         
         
-        var allConfig = [PCUrlConfig]()
+        //url->config
+        var defaultConfig = [String: PCUrlConfig]()
         
-        var leftConfig = [PCUrlConfig]()
+        //(posts, config)
+        var userConfig = [(String, PCUrlConfig)]()
 
-        _pjango_runtime_urls_list.forEach {
-            if $0.host == nil || $0.host == "" || $0.host == "default" {
-                allConfig.append($0)
+        _pjango_runtime_urls_list.forEach { (host, config) in
+            if host == PJANGO_HOST_DEFAULT {
+                defaultConfig[config.url] = config
             } else {
-                leftConfig.append($0)
+                userConfig.append((host, config))
             }
         }
         
@@ -156,16 +157,16 @@ public class PjangoRuntime {
         //[host: [url: config]]
         var hostUrlConfig = [String: [String: PCUrlConfig]]()
         
-        leftConfig.forEach { config in
-            if let host = config.host {
-                if hostUrlConfig[host] == nil {
-                    hostUrlConfig[host] = [String: PCUrlConfig]()
-                }
-                hostUrlConfig[host]![config.url] = config
+        userConfig.forEach { (host, config) in
+            if hostUrlConfig[host] == nil {
+                hostUrlConfig[host] = [String: PCUrlConfig]()
             }
+            hostUrlConfig[host]![config.url] = config
         }
+        
         //[url: [(host, config)]]
         var urlHostConfig = [String: [(String, PCUrlConfig)]]()
+        
         for (host, urlConfig) in hostUrlConfig {
             for (url, config) in urlConfig {
                 if urlHostConfig[url] == nil {
@@ -176,8 +177,8 @@ public class PjangoRuntime {
             }
         }
         
-        var routeList = allConfig.map { config in
-            Route.init(uri: config.url) { req, res in
+        var routeList = defaultConfig.map { (url, config) in
+            Route.init(uri: url) { req, res in
                 config.handle(req, res)
                 res.completed()
             }
@@ -186,9 +187,15 @@ public class PjangoRuntime {
         for (url, configList) in urlHostConfig {
             let route = Route.init(uri: url) { req, res in
                 guard let index = configList.index(where: { $0.0 == req.header(.host) }) else {
-                    res.status = .notFound
-                    res.completed()
-                    return
+                    if let dc = defaultConfig[url] {
+                        dc.handle(req, res)
+                        res.completed()
+                        return
+                    } else {
+                        res.status = .notFound
+                        res.completed()
+                        return
+                    }
                 }
                 let (_, config) = configList[index]
                 config.handle(req, res)
