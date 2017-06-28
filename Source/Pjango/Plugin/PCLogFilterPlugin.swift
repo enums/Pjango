@@ -12,7 +12,7 @@ import PerfectHTTP
 open class PCLogFilterPlugin: PCHTTPFilterPlugin {
     
     open override func requestFilter(req: HTTPRequest, res: HTTPResponse) -> Bool {
-        let url = req.getFullUrl()
+        let url = (req.header(.host) ?? "nil") + req.uri
         let method = req.method
         let host = req.remoteAddress.host
         let port = req.remoteAddress.port
@@ -22,7 +22,7 @@ open class PCLogFilterPlugin: PCHTTPFilterPlugin {
     
     open override func responseFilterHeader(req: HTTPRequest, res: HTTPResponse) -> Bool {
         let code = res.status.code
-        let url = req.getFullUrl()
+        let url = (req.header(.host) ?? "nil") + req.uri
         let method = req.method
         let host = req.remoteAddress.host
         let port = req.remoteAddress.port

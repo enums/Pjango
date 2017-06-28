@@ -38,18 +38,4 @@ public extension HTTPRequest {
     func getUrlParam(key: String) -> String? {
         return self.param(name: key)
     }
-    
-    func getFullUrl() -> String {
-        var url = self.header(.host) ?? "nil"
-        url += self.path
-        if self.queryParams.count > 0 {
-            url += "?"
-            for (key, value) in self.queryParams.dropLast() {
-                url += "\(key)=\(value)&"
-            }
-            let (key, value) = self.queryParams.last!
-            url += "\(key)=\(value)"
-        }
-        return url
-    }
 }
