@@ -9,36 +9,42 @@
    <img src="https://img.shields.io/badge/License-Apache-lightgrey.svg?style=flat">
 </p>
 
-A Swift server-side framework working like Django. Using MVC to design your website.
+一款基于`Swift 3.x`的服务端框架，使用`MVC`设计你的服务端软件。
 
 
-## Usage
+## 使用方法
 
-- Need OpenSSL 1.0.2: [https://gist.github.com/mbejda/a1dabc45b32aaf8b25ae5e8d05923518](https://gist.github.com/mbejda/a1dabc45b32aaf8b25ae5e8d05923518)
+- 可能需要安装 OpenSSL 1.0.2: [https://gist.github.com/mbejda/a1dabc45b32aaf8b25ae5e8d05923518](https://gist.github.com/mbejda/a1dabc45b32aaf8b25ae5e8d05923518)
 
-- Clone this repo.
-- macOS: Use Swift Package Manager to gen a xcodeproj:
+- 克隆此仓库
+- macOS: 使用下面的命令生成 Xcode 工程进行编译:
 
 ```bash
 $ swift package generate-xcodeproj
 ```
 
-- Linux: Use Swift Package Manager to compile:
+- Linux: 使用`Swift Package Manager`编译:
 
 ```bash
 $ swift build
 ```
 
-## Demo
+## 范例
 
-There is a simple demo. See: [https://github.com/enums/pjango-template](https://github.com/enums/pjango-template)
+- [基础模板](https://github.com/enums/pjango-template): 最基础的例子。
 
-## Component
+## 组件
 
-- [Pjango-MySQL](https://github.com/enums/pjango-mysql): MySQL support for Pjango.
+### 数据库支持
+
+- [Pjango-MySQL](https://github.com/enums/pjango-mysql): MySQL 数据库支持组件。
 
 
-## Contact
+### 功能组件
 
-Mail me: [enum@enumsblog.com](mailto:enum@enumsblog.com)
+- [Pjango-JianshuPlugin](https://github.com/enums/Pjango-JianshuPlugin): 爬取简书数据的插件组件。
+
+## 联系我
+
+发邮件给我: [enum@enumsblog.com](mailto:enum@enumsblog.com)
 
