@@ -131,6 +131,11 @@ public class PjangoRuntime {
             if !_pjango_runtime_database.isTableExist(meta.tableName) {
                 _pjango_runtime_log.info("Table `\(meta.tableName)` is not exist! Create it.")
                 _pjango_runtime_database.createTable(model: meta)
+                if let initialObjects = meta.initialObjects() {
+                    initialObjects.forEach {
+                        _pjango_runtime_database.insertModel($0)
+                    }
+                }
             }
             _pjango_runtime_models_name2meta[meta._pjango_core_class_name] = meta
         }

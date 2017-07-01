@@ -81,8 +81,8 @@ open class PCDataBase {
     
     open func doQuery(_ sql: PCSqlStatement) -> [PCDataBaseRecord]? { return nil }
     
-    open func isSchemaExist(_ scheme: String) -> Bool {
-        guard let ret = query(PCSqlUtility.selectSchema(scheme)) else {
+    open func isSchemaExist(_ schema: String) -> Bool {
+        guard let ret = query(PCSqlUtility.selectSchema(schema)) else {
             return false
         }
         if ret.count >= 1 {
@@ -123,10 +123,10 @@ open class PCDataBase {
     
     open func createTable(model: PCModel) {
         guard query(PCSqlUtility.createTable(schema, model.tableName, model._pjango_core_model_fields)) != nil else {
-            _pjango_core_log.error("Failed on creating table \(PCSqlUtility.schemeAndTableToStr(schema, model.tableName))")
+            _pjango_core_log.error("Failed on creating table \(PCSqlUtility.schemaAndTableToStr(schema, model.tableName))")
             return
         }
-        _pjango_core_log.info("Success on creating table \(PCSqlUtility.schemeAndTableToStr(schema, model.tableName))")
+        _pjango_core_log.info("Success on creating table \(PCSqlUtility.schemaAndTableToStr(schema, model.tableName))")
     }
     
     open func dropTable(model: PCMetaModel) {
@@ -135,10 +135,10 @@ open class PCDataBase {
     
     open func dropTable(_ table: String) {
         guard query(PCSqlUtility.dropTable(schema, table)) != nil else {
-            _pjango_core_log.error("Failed on droping table \(PCSqlUtility.schemeAndTableToStr(schema, table))")
+            _pjango_core_log.error("Failed on droping table \(PCSqlUtility.schemaAndTableToStr(schema, table))")
             return
         }
-        _pjango_core_log.info("Success on droping table \(PCSqlUtility.schemeAndTableToStr(schema, table))")
+        _pjango_core_log.info("Success on droping table \(PCSqlUtility.schemaAndTableToStr(schema, table))")
     }
     
     open func selectTable(model: PCMetaModel) -> [PCDataBaseRecord]? {
@@ -149,6 +149,7 @@ open class PCDataBase {
         return query(PCSqlUtility.selectTable(schema, table))
     }
     
+    @discardableResult
     open func insertModel(_ model: PCModel) -> Bool {
         let records = model._pjango_core_model_fields.flatMap { (field) -> String? in
             switch field.type {
@@ -161,12 +162,13 @@ open class PCDataBase {
             return false
         }
         guard query(PCSqlUtility.insertRecord(schema, model.tableName, records)) != nil else {
-            _pjango_core_log.error("Failed on insert model \(PCSqlUtility.schemeAndTableToStr(schema, model.tableName))")
+            _pjango_core_log.error("Failed on insert model \(PCSqlUtility.schemaAndTableToStr(schema, model.tableName))")
             return false
         }
         return true
     }
     
+    @discardableResult
     open func updateModel(_ model: PCModel) -> Bool {
         guard let id = model._pjango_core_model_id else {
             return false
@@ -193,7 +195,7 @@ open class PCDataBase {
             return false
         }
         guard query(PCSqlUtility.updateRecord(schema, model.tableName, id: id, fields: model._pjango_core_model_fields_key, record: updateStr)) != nil else {
-            _pjango_core_log.error("Failed on update model \(PCSqlUtility.schemeAndTableToStr(schema, model.tableName))")
+            _pjango_core_log.error("Failed on update model \(PCSqlUtility.schemaAndTableToStr(schema, model.tableName))")
             return false
         }
         return true

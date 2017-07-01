@@ -83,6 +83,10 @@ open class PCModel: PCObject, PCViewable {
         _pjango_core_model_cache_time[_pjango_core_class_name] = nil
     }
     
+    open func initialObjects() -> [PCModel]? {
+        return nil
+    }
+    
     open class func queryObjects() -> [PCModel]? {
         guard let meta = PjangoRuntime._pjango_runtime_models_name2meta[_pjango_core_class_name] else {
             return nil
@@ -116,6 +120,7 @@ open class PCModel: PCObject, PCViewable {
         }
     }
     
+    @discardableResult
     open class func insertObject(_ model: PCModel) -> Bool {
         if PjangoRuntime._pjango_runtime_database.insertModel(model) == true {
             cacheRemove()

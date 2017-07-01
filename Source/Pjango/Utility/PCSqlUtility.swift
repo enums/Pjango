@@ -25,7 +25,7 @@ final public class PCSqlUtility {
         return "SELECT * FROM information_schema.SCHEMATA where SCHEMA_NAME='\(name)';"
     }
     
-    internal static func schemeAndTableToStr(_ schema: String? = nil, _ table: String) -> String {
+    internal static func schemaAndTableToStr(_ schema: String? = nil, _ table: String) -> String {
         if let schema = schema {
             return "`\(schema)`.`\(table)`"
         } else {
@@ -37,22 +37,22 @@ final public class PCSqlUtility {
         let fieldsStr = fields.reduce("") {
             $0 + ", " + $1._pjango_core_toSql()
         }
-        return "CREATE TABLE \(schemeAndTableToStr(schema, table)) (`_pjango_id` INT AUTO_INCREMENT \(fieldsStr), PRIMARY KEY (`_pjango_id`));"
+        return "CREATE TABLE \(schemaAndTableToStr(schema, table)) (`_pjango_id` INT AUTO_INCREMENT \(fieldsStr), PRIMARY KEY (`_pjango_id`));"
     }
     
     public static func dropTable(_ schema: String? = nil, _ table: String) -> PCSqlStatement {
-        return "DROP TABLE \(schemeAndTableToStr(schema, table));"
+        return "DROP TABLE \(schemaAndTableToStr(schema, table));"
     }
     
     public static func selectTable(_ schema: String? = nil, _ table: String, _ fields: String = "*") -> PCSqlStatement {
-        return "SELECT \(fields) FROM \(schemeAndTableToStr(schema, table));"
+        return "SELECT \(fields) FROM \(schemaAndTableToStr(schema, table));"
     }
     
     public static func insertRecord(_ schema: String? = nil, _ table: String, _ record: PCDataBaseRecord) -> PCSqlStatement {
         let recordStr = record.reduce("'0'") {
-            $0 + ", " + ($1 ?? "")
+            "\($0), '\(($1 ?? ""))'"
         }
-        return "INSERT INTO \(schemeAndTableToStr(schema, table)) VALUES (\(recordStr))"
+        return "INSERT INTO \(schemaAndTableToStr(schema, table)) VALUES (\(recordStr))"
     }
     
     public static func updateRecord(_ schema: String? = nil, _ table: String, id: Int, fields: [String], record: PCDataBaseRecord) -> PCSqlStatement {
@@ -65,6 +65,6 @@ final public class PCSqlUtility {
                 updateStr += ","
             }
         }
-        return "UPDATE \(schemeAndTableToStr(schema, table)) SET \(updateStr) WHERE `_pjango_id`='\(id)';"
+        return "UPDATE \(schemaAndTableToStr(schema, table)) SET \(updateStr) WHERE `_pjango_id`='\(id)';"
     }
 }
