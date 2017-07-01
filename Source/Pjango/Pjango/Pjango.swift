@@ -23,7 +23,11 @@ public func pjangoUrlReverse(host: String, name: String) -> String? {
     guard let config = PjangoRuntime._pjango_runtime_urls_name2config["\(host)@\(name)"] else {
         return nil
     }
-    return "http://\(host)/\(config.url)"
+    if host == PJANGO_HOST_DEFAULT {
+        return "/\(config.url)"
+    } else {
+        return "http://\(host)/\(config.url)"
+    }
 }
 
 public func pjangoUrlConfigReverse(name: String) -> PCUrlConfig? {
@@ -40,7 +44,7 @@ public func pjangoHttpResponse(_ handle: @escaping RequestHandler) -> PCUrlHandl
     return handle
 }
 
-public func pjangoHttpRedirect(host: String = "default", name: String) -> PCUrlHandle? {
+public func pjangoHttpRedirect(host: String = PJANGO_HOST_DEFAULT, name: String) -> PCUrlHandle? {
     guard let url = pjangoUrlReverse(host: host, name: name) else {
         return nil
     }
