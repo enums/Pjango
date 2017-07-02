@@ -68,7 +68,7 @@ open class PCModel: PCObject, PCViewable {
     
     internal static var _pjango_core_model_cache_time = Dictionary<String, TimeInterval>()
     
-    internal var _pjango_core_model_id: Int? = nil
+    internal var _pjango_core_model_id: Int64? = nil
     
     open var tableName: String {
         return ""
@@ -108,7 +108,8 @@ open class PCModel: PCObject, PCViewable {
         }
         return records.flatMap { record in
             var record = record
-            guard let idStr = record.removeFirst(), let id = Int(idStr) else {
+            let idStr = record.removeFirst()
+            guard let id = Int64(idStr) else {
                 return nil
             }
             let model = self.init()

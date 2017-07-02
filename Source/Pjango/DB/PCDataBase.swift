@@ -25,7 +25,7 @@ open class PCDataBase {
     open let config: PCDataBaseConfig
     open var state: PCDataBaseState
     
-    internal let _pjango_core_database_lock = NSLock.init()
+    open let _pjango_core_database_lock = NSLock.init()
     
     public init(config: PCDataBaseConfig) {
         self.config = config
@@ -121,7 +121,7 @@ open class PCDataBase {
         _pjango_core_log.info("Sucess on droping schema `\(schema)`")
     }
     
-    open func createTable(model: PCModel) {
+    open func createTable(model: PCMetaModel) {
         guard query(PCSqlUtility.createTable(schema, model.tableName, model._pjango_core_model_fields)) != nil else {
             _pjango_core_log.error("Failed on creating table \(PCSqlUtility.schemaAndTableToStr(schema, model.tableName))")
             return
@@ -151,17 +151,17 @@ open class PCDataBase {
     
     @discardableResult
     open func insertModel(_ model: PCModel) -> Bool {
-        let records = model._pjango_core_model_fields.flatMap { (field) -> String? in
+        let record = model._pjango_core_model_fields.flatMap { (field) -> String? in
             switch field.type {
             case .string: return field.strValue
             case .int: return "\(field.intValue)"
             case .unknow: return nil
             }
         }
-        guard records.count == model._pjango_core_model_fields.count else {
+        guard record.count == model._pjango_core_model_fields.count else {
             return false
         }
-        guard query(PCSqlUtility.insertRecord(schema, model.tableName, records)) != nil else {
+        guard query(PCSqlUtility.insertRecord(schema, model.tableName, record)) != nil else {
             _pjango_core_log.error("Failed on insert model \(PCSqlUtility.schemaAndTableToStr(schema, model.tableName))")
             return false
         }

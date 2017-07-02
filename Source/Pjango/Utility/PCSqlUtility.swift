@@ -9,7 +9,7 @@
 import Foundation
 
 public typealias PCSqlStatement = String
-public typealias PCDataBaseRecord = [String?]
+public typealias PCDataBaseRecord = [String]
 
 final public class PCSqlUtility {
     
@@ -50,16 +50,16 @@ final public class PCSqlUtility {
     
     public static func insertRecord(_ schema: String? = nil, _ table: String, _ record: PCDataBaseRecord) -> PCSqlStatement {
         let recordStr = record.reduce("'0'") {
-            "\($0), '\(($1 ?? ""))'"
+            "\($0), '\(($1))'"
         }
         return "INSERT INTO \(schemaAndTableToStr(schema, table)) VALUES (\(recordStr))"
     }
     
-    public static func updateRecord(_ schema: String? = nil, _ table: String, id: Int, fields: [String], record: PCDataBaseRecord) -> PCSqlStatement {
+    public static func updateRecord(_ schema: String? = nil, _ table: String, id: Int64, fields: [String], record: PCDataBaseRecord) -> PCSqlStatement {
         var updateStr = ""
         for i in 0..<fields.count {
             let field = fields[i]
-            let value = record[i] ?? ""
+            let value = record[i] 
             updateStr += "`\(field)`='\(value)'"
             if i < fields.count - 1 {
                 updateStr += ","
