@@ -35,14 +35,34 @@ $ swift build
 
 ## 组件
 
-### 数据库支持
+### 模型组件
 
+- Pjango-Core-Model: 内置的模型核心驱动。
+
+### 视图组件
+
+- Pjango-Core-View: 内置的视图核心驱动。
+- Pjango-Core-ListView: 内置的列表类视图。
+- Pjango-Core-DetailView: 内置的展示类视图。
+
+### 数据库组件
+
+- Pjango-Core-DataBase: 内置的数据库核心驱动。
+- Pjango-Core-FileDB: 内置的文件驱动组件。
 - [Pjango-MySQL](https://github.com/enums/pjango-mysql): MySQL 数据库支持组件。
 
 
-### 功能组件
+### 插件式组件
 
-- [Pjango-JianshuPlugin](https://github.com/enums/Pjango-JianshuPlugin): 爬取简书数据的插件组件。
+- Pjango-Core-Plugin: 内置的插件核心驱动。
+- Pjango-Core-TaskPlugin: 内置的一次性任务组件。
+- Pjango-Core-TimerPlugin: 内置的延时、定时、重复定时任务组件。
+- Pjango-Core-HTTPFilterPlugin: 内置的 HTTP 服务过滤器组件。
+- Pjango-Core-LogFilterPlugin: 内置的 HTTP 过滤器日志组件。
+
+### 其他功能组件
+
+- [Pjango-JianshuPlugin](https://github.com/enums/Pjango-JianshuPlugin): 简书的定时爬虫组件。
 
 ## 联系我
 
