@@ -11,7 +11,7 @@ import Foundation
 open class PCFileDBConfig: PCDataBaseConfig {
     
     public var schema = "default"
-    public var path = ""
+    public var path = "\(PJANGO_WORKSPACE_PATH)/filedb"
     
     public override init?(param: Dictionary<String, Any>) {
         super.init()
