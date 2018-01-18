@@ -40,6 +40,12 @@ public func pjangoHttpResponse(_ msg: String) -> PCUrlHandle {
     }
 }
 
+public func pjangoHttpResponse(_ bytes: [UInt8]) -> PCUrlHandle {
+    return pjangoHttpResponse { req, res in
+        res._pjango_safe_setBody(bytes)
+    }
+}
+
 public func pjangoHttpResponse(_ handle: @escaping RequestHandler) -> PCUrlHandle {
     return handle
 }

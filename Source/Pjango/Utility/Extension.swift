@@ -32,6 +32,13 @@ public extension HTTPResponse {
             self.setHeader(.contentLength, value: "\(self.bodyBytes.count)")
         }
     }
+    
+    func _pjango_safe_setBody(_ body: [UInt8]?, _ setContentLength: Bool = true) {
+        self.setBody(bytes: body ?? [])
+        if setContentLength {
+            self.setHeader(.contentLength, value: "\(self.bodyBytes.count)")
+        }
+    }
 }
 
 public extension HTTPRequest {
