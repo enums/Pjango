@@ -84,7 +84,7 @@ final public class PCDataBaseField {
         let typeStr = "\(type.rawValue)(\(length))"
         let nullStr: String
         if notNull, let defaultValue = self.defaultValue {
-            nullStr = "NOT NULL DEFAULT \(defaultValue)"
+            nullStr = "NOT NULL DEFAULT '\(defaultValue)'"
         } else {
             nullStr = "NULL"
         }
