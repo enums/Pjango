@@ -18,9 +18,13 @@ fileprivate var dateFormatter = { () -> DateFormatter in
 
 public extension Date {
     var stringValue: String {
-        get {
-            return dateFormatter.string(from: self)
-        }
+        return dateFormatter.string(from: self)
+    }
+}
+
+public extension String {
+    var dateValue: Date? {
+        return dateFormatter.date(from: self)
     }
 }
 

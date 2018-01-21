@@ -141,12 +141,12 @@ open class PCDataBase {
         _pjango_core_log.info("Success on droping table \(PCSqlUtility.schemaAndTableToStr(schema, table))")
     }
     
-    open func selectTable(model: PCMetaModel) -> [PCDataBaseRecord]? {
-        return selectTable(table: model.tableName)
+    open func selectTable(model: PCMetaModel, ext: String? = nil) -> [PCDataBaseRecord]? {
+        return selectTable(table: model.tableName, ext: ext)
     }
     
-    open func selectTable(table: String) -> [PCDataBaseRecord]? {
-        return query(PCSqlUtility.selectTable(schema, table))
+    open func selectTable(table: String, ext: String? = nil) -> [PCDataBaseRecord]? {
+        return query(PCSqlUtility.selectTable(schema, table, ext: ext))
     }
     
     @discardableResult

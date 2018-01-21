@@ -44,13 +44,13 @@ final public class PCSqlUtility {
         return "DROP TABLE \(schemaAndTableToStr(schema, table));"
     }
     
-    public static func selectTable(_ schema: String? = nil, _ table: String, _ fields: String = "*") -> PCSqlStatement {
-        return "SELECT \(fields) FROM \(schemaAndTableToStr(schema, table));"
+    public static func selectTable(_ schema: String? = nil, _ table: String, _ fields: String = "*", ext: String? = nil) -> PCSqlStatement {
+        return "SELECT \(fields) FROM \(schemaAndTableToStr(schema, table)) \(ext ?? "");"
     }
     
     public static func insertRecord(_ schema: String? = nil, _ table: String, _ record: PCDataBaseRecord) -> PCSqlStatement {
         let recordStr = record.reduce("'0'") {
-            "\($0), '\(($1))'"
+            "\($0), '\(($1.replacingOccurrences(of: "'", with: "\\'")))'"
         }
         return "INSERT INTO \(schemaAndTableToStr(schema, table)) VALUES (\(recordStr))"
     }
@@ -59,7 +59,7 @@ final public class PCSqlUtility {
         var updateStr = ""
         for i in 0..<fields.count {
             let field = fields[i]
-            let value = record[i] 
+            let value = record[i]
             updateStr += "`\(field)`='\(value)'"
             if i < fields.count - 1 {
                 updateStr += ","

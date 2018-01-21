@@ -87,19 +87,20 @@ open class PCModel: PCObject, PCViewable {
         return nil
     }
     
-    open class func queryObjects() -> [PCModel]? {
+    open class func queryObjects(ext: (useCache: Bool, param: String)? = nil) -> [PCModel]? {
         guard let meta = PjangoRuntime._pjango_runtime_models_name2meta[_pjango_core_class_name] else {
             return nil
         }
         let nowTime = Date.init()
         let records: [PCDataBaseRecord]
-        if let cacheTime = cacheTime,
+        if  ext?.useCache == false,
+            let cacheTime = cacheTime,
             let cache = _pjango_core_model_cache[_pjango_core_class_name],
             let lastCacheTime = _pjango_core_model_cache_time[_pjango_core_class_name],
             nowTime.timeIntervalSince1970 - lastCacheTime <= cacheTime {
             records = cache
         } else {
-            guard let recordsFromDB = PjangoRuntime._pjango_runtime_database.selectTable(model: meta) else {
+            guard let recordsFromDB = PjangoRuntime._pjango_runtime_database.selectTable(model: meta, ext: ext?.param) else {
                 return nil
             }
             _pjango_core_model_cache[_pjango_core_class_name] = recordsFromDB

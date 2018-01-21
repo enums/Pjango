@@ -96,11 +96,11 @@ open class PCFileDBDataBase: PCDataBase {
         }
     }
     
-    open override func selectTable(model: PCMetaModel) -> [PCDataBaseRecord]? {
-        return selectTable(table: model.tableName)
+    open override func selectTable(model: PCMetaModel, ext: String? = nil) -> [PCDataBaseRecord]? {
+        return selectTable(table: model.tableName, ext: ext)
     }
     
-    open override func selectTable(table: String) -> [PCDataBaseRecord]? {
+    open override func selectTable(table: String, ext: String? = nil) -> [PCDataBaseRecord]? {
         return _pjango_filedb_doWithLocked {
             let file = File.init(PCFileDBUtility.filePathForTable(path: path, schema: schema!, table: table))
             guard file.exists else {
