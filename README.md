@@ -33,6 +33,8 @@ $ swift build
 ## 范例
 
 - [基础模板](https://github.com/enums/pjango-template)：最基础的例子。
+- [Calatrava](https://github.com/enums/calatrava)：我的开源博客，Pjango 的深度使用。
+- [Postman](https://github.com/enums/postman)：HTTP 转发服务器，Calatrava 中的 Instagram 模块依赖在远程服务器部署的 Postman。
 
 ## 组件
 
@@ -63,6 +65,9 @@ $ swift build
 ### 其他功能组件
 
 - [Pjango-JianshuPlugin](https://github.com/enums/Pjango-JianshuPlugin)：简书的定时爬虫组件。
+- [Pjango-SteamPlugin](https://github.com/enums/Pjango-SteamPlugin)：Steam 主页背景图和头像的抓取以及适用于 Calatrava 的背景和头像的替换。
+- [Pjango-Postman](https://github.com/enums/Pjango-Postman)：向 Postman 代理发出请求的组件。
+
 
 ## 联系我
 
