@@ -122,6 +122,7 @@ open class PCFileDBDataBase: PCDataBase {
             switch field.type {
             case .string: return field.strValue
             case .int: return "\(field.intValue)"
+            case .text: return field.strValue
             case .unknow: return nil
             }
         }
@@ -161,6 +162,11 @@ open class PCFileDBDataBase: PCDataBase {
                     return nil
                 }
                 return "\(intValue)"
+            case .text:
+                guard let textValue = value as? String else {
+                    return nil
+                }
+                return textValue
             case .unknow: return nil
             }
         }

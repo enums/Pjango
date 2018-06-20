@@ -28,6 +28,7 @@ open class PCModel: PCObject, PCViewable {
         case .unknow: return nil
         case .string: return value as? String
         case .int: return value as? Int
+        case .text: return value as? String
         }
     }
     
@@ -45,7 +46,7 @@ open class PCModel: PCObject, PCViewable {
             return
         }
         switch type {
-        case .string:
+        case .string, .text:
             guard let strValue = value as? String else {
                 return
             }
@@ -60,7 +61,8 @@ open class PCModel: PCObject, PCViewable {
                 return
             }
             _pjango_core_model_fields_value[key] = intValue
-        default: return
+        case .unknow:
+            return
         }
     }
     
@@ -103,7 +105,9 @@ open class PCModel: PCObject, PCViewable {
             guard let recordsFromDB = PjangoRuntime._pjango_runtime_database.selectTable(model: meta, ext: ext?.param) else {
                 return nil
             }
-            _pjango_core_model_cache[_pjango_core_class_name] = recordsFromDB
+            if ext?.useCache == true {
+                _pjango_core_model_cache[_pjango_core_class_name] = recordsFromDB
+            }
             _pjango_core_model_cache_time[_pjango_core_class_name] = nowTime.timeIntervalSince1970
             records = recordsFromDB
         }

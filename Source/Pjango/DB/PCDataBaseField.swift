@@ -12,11 +12,12 @@ public enum PCDataBaseFieldType: String {
     case unknow = ""
     case string = "VARCHAR"
     case int = "INT"
+    case text = "TEXT"
 }
+
 public protocol PCModelDataBaseFieldType { }
 extension String: PCModelDataBaseFieldType { }
 extension Int: PCModelDataBaseFieldType { }
-
 
 final public class PCDataBaseField {
     
