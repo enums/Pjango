@@ -23,7 +23,7 @@ open class PCView: PCObject {
         return viewParam ?? PCViewParam()
     }
     
-    open static var meta: PCView {
+    public static var meta: PCView {
         return self.init()
     }
         
@@ -39,7 +39,7 @@ open class PCView: PCObject {
     
     open weak var currentRequest: HTTPRequest? = nil
     
-    open static func asHandle() -> PCUrlHandle {
+    public static func asHandle() -> PCUrlHandle {
         let handle: RequestHandler = { req, res in
             let view = self.init()
             view.currentRequest = req

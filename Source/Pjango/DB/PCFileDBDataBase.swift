@@ -118,7 +118,7 @@ open class PCFileDBDataBase: PCDataBase {
     
     @discardableResult
     open override func insertModel(_ model: PCModel) -> Bool {
-        var record = model._pjango_core_model_fields.flatMap { (field) -> String? in
+        var record = model._pjango_core_model_fields.compactMap { (field) -> String? in
             switch field.type {
             case .string: return field.strValue
             case .int: return "\(field.intValue)"
@@ -147,7 +147,7 @@ open class PCFileDBDataBase: PCDataBase {
         guard let id = model._pjango_core_model_id else {
             return false
         }
-        let updateStr = model._pjango_core_model_fields_key.flatMap { (key) -> String? in
+        let updateStr = model._pjango_core_model_fields_key.compactMap { (key) -> String? in
             guard let type = model._pjango_core_model_fields_type[key], let value = model._pjango_core_model_get_filed_data(key: key) else {
                 return nil
             }
@@ -215,7 +215,7 @@ open class PCFileDBDataBase: PCDataBase {
                         "objs": [[String]]()
                     ])
             } else {
-                json = JSON.parse(str)
+                json = JSON.init(parseJSON: str)
             }
             guard let jsonArray = json["objs"].array else {
                 return nil

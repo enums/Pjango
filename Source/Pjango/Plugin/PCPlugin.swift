@@ -13,7 +13,7 @@ public typealias PCMetaPlugin = PCPlugin
 
 open class PCPlugin: PCObject, PCRunable {
     
-    open static var meta: PCMetaPlugin {
+    public static var meta: PCMetaPlugin {
         return self.init()
     }
     

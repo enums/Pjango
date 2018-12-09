@@ -22,17 +22,17 @@ open class PCDataBase {
         return nil
     }
     
-    open let config: PCDataBaseConfig
+    public let config: PCDataBaseConfig
     open var state: PCDataBaseState
     
-    open let _pjango_core_database_lock = NSLock.init()
+    public let _pjango_core_database_lock = NSLock.init()
     
     public init(config: PCDataBaseConfig) {
         self.config = config
         self.state = .inited
     }
     
-    open static var empty: PCDataBase {
+    public static var empty: PCDataBase {
         let database = PCDataBase.init(config: PCDataBaseConfig.init())
         database.state = .empty
         return database
@@ -151,7 +151,7 @@ open class PCDataBase {
     
     @discardableResult
     open func insertModel(_ model: PCModel) -> Bool {
-        let record = model._pjango_core_model_fields.flatMap { (field) -> String? in
+        let record = model._pjango_core_model_fields.compactMap { (field) -> String? in
             switch field.type {
             case .string: return field.strValue
             case .int: return "\(field.intValue)"
@@ -174,7 +174,7 @@ open class PCDataBase {
         guard let id = model._pjango_core_model_id else {
             return false
         }
-        let updateStr = model._pjango_core_model_fields_key.flatMap { (key) -> String? in
+        let updateStr = model._pjango_core_model_fields_key.compactMap { (key) -> String? in
             guard let type = model._pjango_core_model_fields_type[key], let value = model._pjango_core_model_get_filed_data(key: key) else {
                 return nil
             }

@@ -111,7 +111,7 @@ open class PCModel: PCObject, PCViewable {
             _pjango_core_model_cache_time[_pjango_core_class_name] = nowTime.timeIntervalSince1970
             records = recordsFromDB
         }
-        return records.flatMap { record in
+        return records.compactMap { record in
             var record = record
             let idStr = record.removeFirst()
             guard let id = Int64(idStr) else {
@@ -146,7 +146,7 @@ open class PCModel: PCObject, PCViewable {
         }
     }
     
-    open static var meta: PCMetaModel {
+    public static var meta: PCMetaModel {
         return self.init()
     }
     

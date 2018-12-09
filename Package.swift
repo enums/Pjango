@@ -1,25 +1,25 @@
+// swift-tools-version:4.2
+// The swift-tools-version declares the minimum version of Swift required to build this package.
+
 import PackageDescription
 
-#if os(OSX)
 let package = Package(
     name: "Pjango",
-    targets: [],
+    products: [
+        .library(
+            name: "Pjango",
+            targets: ["Pjango"]),
+        ],
     dependencies: [
-        .Package(url: "https://github.com/PerfectlySoft/Perfect-HTTPServer.git", majorVersion: 3, minor: 0),
-        .Package(url: "https://github.com/PerfectlySoft/Perfect-Mustache.git", majorVersion: 3, minor: 0),
-        .Package(url: "https://github.com/enums/SwiftyJSON.git", majorVersion: 4),
-        ]
+        .package(url:"https://github.com/PerfectlySoft/Perfect-HTTPServer.git" , from: "3.0.19"),
+        .package(url:"https://github.com/PerfectlySoft/Perfect-Mustache.git" , from: "3.0.2"),
+        .package(url:"https://github.com/enums/Pjango-SwiftyJSON" , from: "1.0.0"),
+    ],
+    targets: [
+        .target(
+            name: "Pjango",
+            dependencies: ["PerfectHTTPServer", "PerfectMustache", "SwiftyJSON"])
+    ]
 )
-#else
-let package = Package(
-    name: "Pjango",
-    targets: [],
-    dependencies: [
-        .Package(url: "https://github.com/PerfectlySoft/Perfect-HTTPServer.git", majorVersion: 2, minor: 0),
-        .Package(url: "https://github.com/PerfectlySoft/Perfect-Mustache.git", majorVersion: 2, minor: 0),
-        .Package(url: "https://github.com/enums/SwiftyJSON.git", majorVersion: 4),
-        ]
-)
-#endif
 
 
