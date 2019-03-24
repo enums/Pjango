@@ -14,8 +14,8 @@ open class PCLogFilterPlugin: PCHTTPFilterPlugin {
     open override func requestFilter(req: HTTPRequest, res: HTTPResponse) -> Bool {
         let url = (req.header(.host) ?? "nil") + req.uri
         let method = req.method
-        let host = req.remoteAddress.host
-        let port = req.remoteAddress.port
+        let host = req.header(.custom(name: "watchdog_ip")) ?? req.remoteAddress.host
+        let port = UInt16(req.header(.custom(name: "watchdog_port")) ?? "") ?? req.remoteAddress.port
         _pjango_core_log.info("Req:      [\(method)][\(host)][\(port)]: \(url)")
         return true
     }
@@ -24,8 +24,8 @@ open class PCLogFilterPlugin: PCHTTPFilterPlugin {
         let code = res.status.code
         let url = (req.header(.host) ?? "nil") + req.uri
         let method = req.method
-        let host = req.remoteAddress.host
-        let port = req.remoteAddress.port
+        let host = req.header(.custom(name: "watchdog_ip")) ?? req.remoteAddress.host
+        let port = UInt16(req.header(.custom(name: "watchdog_port")) ?? "") ?? req.remoteAddress.port
         _pjango_core_log.info("Res: [\(code)][\(method)][\(host)][\(port)]: \(url)")
         return true
     }
