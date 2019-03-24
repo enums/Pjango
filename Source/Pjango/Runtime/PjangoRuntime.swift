@@ -191,7 +191,7 @@ public class PjangoRuntime {
         
         for (url, configList) in urlHostConfig {
             let route = Route.init(uri: url) { req, res in
-                guard let index = configList.index(where: { $0.0 == req.header(.host) }) else {
+                guard let index = configList.index(where: { $0.0 == req.header(.host)?.split(separator: ":").first ?? "" }) else {
                     if let dc = defaultConfig[url] {
                         dc.handle(req, res)
                         res.completed()
