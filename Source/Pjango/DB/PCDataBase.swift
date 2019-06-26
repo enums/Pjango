@@ -94,7 +94,7 @@ open class PCDataBase {
     
     
     open func isTableExist(_ table: String) -> Bool {
-        return query(PCSqlUtility.selectTable(schema, table)) != nil ? true : false
+        return query(PCSqlUtility.selectTable(schema, table, ext: "LIMIT 1")) != nil ? true : false
     }
     
     open func createSchema() {
