@@ -59,7 +59,7 @@ final public class PCSqlUtility {
         var updateStr = ""
         for i in 0..<fields.count {
             let field = fields[i]
-            let value = record[i]
+            let value = record[i].replacingOccurrences(of: "'", with: "\\'")
             updateStr += "`\(field)`='\(value)'"
             if i < fields.count - 1 {
                 updateStr += ","
