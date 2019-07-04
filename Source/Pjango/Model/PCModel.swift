@@ -89,7 +89,16 @@ open class PCModel: PCObject, PCViewable {
         return nil
     }
     
-    open class func queryObjects(ext: (useCache: Bool, param: String)? = nil) -> [PCModel]? {
+
+    open class func queryObjects<T>(field: PCDataBaseField, likeValue value: PCModelDataBaseFieldType, useCache: Bool = true, ext: String = "") -> [T]? {
+        return queryObjects(ext: (useCache, "WHERE \(field.name) like '\(value)' \(ext)"))
+    }
+
+    open class func queryObjects<T>(field: PCDataBaseField, equalValue value: PCModelDataBaseFieldType, useCache: Bool = true, ext: String = "") -> [T]? {
+        return queryObjects(ext: (useCache, "WHERE \(field.name)='\(value)' \(ext)"))
+    }
+
+    open class func queryObjects<T>(ext: (useCache: Bool, param: String)? = nil) -> [T]? {
         guard let meta = PjangoRuntime._pjango_runtime_models_name2meta[_pjango_core_class_name] else {
             return nil
         }
@@ -122,10 +131,9 @@ open class PCModel: PCObject, PCViewable {
             for i in 0..<record.count {
                 model._pjango_core_model_set_field_data(index: i, value: record[i] as Any)
             }
-            return model
+            return model as? T
         }
     }
-    
     @discardableResult
     open class func insertObject(_ model: PCModel) -> Bool {
         if PjangoRuntime._pjango_runtime_database.insertModel(model) == true {
