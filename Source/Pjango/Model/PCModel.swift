@@ -88,17 +88,8 @@ open class PCModel: PCObject, PCViewable {
     open func initialObjects() -> [PCModel]? {
         return nil
     }
-    
 
-    open class func queryObjects<T>(field: PCDataBaseField, likeValue value: PCModelDataBaseFieldType, useCache: Bool = true, ext: String = "") -> [T]? {
-        return queryObjects(ext: (useCache, "WHERE \(field.name) like '\(value)' \(ext)"))
-    }
-
-    open class func queryObjects<T>(field: PCDataBaseField, equalValue value: PCModelDataBaseFieldType, useCache: Bool = true, ext: String = "") -> [T]? {
-        return queryObjects(ext: (useCache, "WHERE \(field.name)='\(value)' \(ext)"))
-    }
-
-    open class func queryObjects<T>(ext: (useCache: Bool, param: String)? = nil) -> [T]? {
+    open class func queryObjects<T>(_ type: T.Type, ext: (useCache: Bool, param: String)? = nil) -> [T]? {
         guard let meta = PjangoRuntime._pjango_runtime_models_name2meta[_pjango_core_class_name] else {
             return nil
         }
