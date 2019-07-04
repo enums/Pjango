@@ -95,7 +95,7 @@ open class PCModel: PCObject, PCViewable {
         }
         let nowTime = Date.init()
         let records: [PCDataBaseRecord]
-        if  ext?.useCache != true,
+        if  ext == nil,
             let cacheTime = cacheTime,
             let cache = _pjango_core_model_cache[_pjango_core_class_name],
             let lastCacheTime = _pjango_core_model_cache_time[_pjango_core_class_name],
