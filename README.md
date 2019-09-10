@@ -28,6 +28,10 @@
 
 —— 2019.07.23
 
+新的解决方案已经开发完成，见：[https://github.com/enums/Heze](https://github.com/enums/Heze)
+
+—— 2019.09.10
+
 ## 使用方法
 
 - 可能需要安装 OpenSSL 1.0.2：[https://gist.github.com/mbejda/a1dabc45b32aaf8b25ae5e8d05923518](https://gist.github.com/mbejda/a1dabc45b32aaf8b25ae5e8d05923518)
