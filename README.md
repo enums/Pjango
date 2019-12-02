@@ -32,6 +32,10 @@
 
 —— 2019.09.10
 
+今日发现在 Swift 5 的编译器下已无法正常工作，请不要再使用了。PCModel 的 meta 方法构造出了父类实例，是个空的模型描述。
+
+—— 2019.12.02
+
 ## 使用方法
 
 - 可能需要安装 OpenSSL 1.0.2：[https://gist.github.com/mbejda/a1dabc45b32aaf8b25ae5e8d05923518](https://gist.github.com/mbejda/a1dabc45b32aaf8b25ae5e8d05923518)
